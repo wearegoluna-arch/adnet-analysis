@@ -634,27 +634,31 @@
 <section id="budget">
   <div class="section-eyebrow">Interactive budget allocation</div>
   <h2 class="section-title" style="margin-bottom:8px">Test Budget Allocator</h2>
-  <p style="font-size:14px;color:var(--muted);margin-bottom:32px">Drag the sliders to model different splits. Allocations are independent.</p>
-  <div class="budget-total-display">
-    <span class="private-content">$30,000</span>
-    <span class="guest-content">Confidential</span>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:32px">Drag sliders to split the budget. All four always add up to 100%.</p>
+  <div class="private-content">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px">
+      <div class="budget-total-display" style="margin-bottom:0">$<input id="totalBudgetInput" type="number" value="30000" min="0" step="1000" style="background:transparent;border:none;border-bottom:2px solid var(--accent);color:inherit;font-family:'Syne',sans-serif;font-weight:800;font-size:inherit;letter-spacing:inherit;width:6ch;outline:none;padding:0 4px 2px;" oninput="this.style.width=Math.max(3,this.value.length)+'ch';updateBudget()"></div>
+    </div>
   </div>
-  <div class="budget-subtitle">Total test budget across all 4 networks</div>
+  <div class="guest-content">
+    <div class="budget-total-display">Confidential</div>
+  </div>
+  <div class="budget-subtitle">Total test budget — <span class="private-content">edit the number above to model different totals</span><span class="guest-content">available in full report</span></div>
   <div class="budget-slider-group reveal">
     <div class="slider-blockchain"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#ff6b35"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div><div><span class="budget-slider-amount" id="bcAmount">
       <span class="private-content">$10,500</span><span class="guest-content">—</span>
-    </span><span class="budget-slider-pct" id="bcPct">35%</span></div></div><input type="range" min="0" max="100" value="35" id="bcSlider" oninput="updateBudget()" style="--pct:35%"></div>
+    </span><span class="budget-slider-pct" id="bcPct">35%</span></div></div><input type="range" min="0" max="100" value="35" id="bcSlider" oninput="updateBudget('bcSlider')" style="--pct:35%"></div>
     <div class="slider-aads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#f5c842"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div><div><span class="budget-slider-amount" id="aadsAmount">
       <span class="private-content">$9,000</span><span class="guest-content">—</span>
-    </span><span class="budget-slider-pct" id="aadsPct">30%</span></div></div><input type="range" min="0" max="100" value="30" id="aadsSlider" oninput="updateBudget()" style="--pct:30%"></div>
+    </span><span class="budget-slider-pct" id="aadsPct">30%</span></div></div><input type="range" min="0" max="100" value="30" id="aadsSlider" oninput="updateBudget('aadsSlider')" style="--pct:30%"></div>
     <div class="slider-richads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#5b6aff"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div><div><span class="budget-slider-amount" id="raAmount">
       <span class="private-content">$7,500</span><span class="guest-content">—</span>
-    </span><span class="budget-slider-pct" id="raPct">25%</span></div></div><input type="range" min="0" max="100" value="25" id="raSlider" oninput="updateBudget()" style="--pct:25%"></div>
+    </span><span class="budget-slider-pct" id="raPct">25%</span></div></div><input type="range" min="0" max="100" value="25" id="raSlider" oninput="updateBudget('raSlider')" style="--pct:25%"></div>
     <div class="slider-roiads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#22c97a"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div><div><span class="budget-slider-amount" id="roiAmount">
       <span class="private-content">$3,000</span><span class="guest-content">—</span>
-    </span><span class="budget-slider-pct" id="roiPct">10%</span></div></div><input type="range" min="0" max="100" value="10" id="roiSlider" oninput="updateBudget()" style="--pct:10%"></div>
+    </span><span class="budget-slider-pct" id="roiPct">10%</span></div></div><input type="range" min="0" max="100" value="10" id="roiSlider" oninput="updateBudget('roiSlider')" style="--pct:10%"></div>
   </div>
-  <div class="callout info reveal"><div class="callout-title">How these numbers were calculated</div><div class="callout-text"><span class="private-content">The recommended 35/30/25/10% split is based on: proven FTD track record (Blockchain-Ads), dual-product fit (AADS), unique Telegram inventory unavailable elsewhere (RichAds), and limited format value (ROIAds). Dollar amounts apply those percentages to the $30k total. CPA estimates came directly from RichAds' GEO-level media plan.</span><span class="guest-content">Allocation percentages based on: conversion track record, dual-product fit, unique inventory access, and relative format value. Exact amounts and methodology available in full report.</span></div></div>
+  <div class="callout info reveal"><div class="callout-title">How these numbers were calculated</div><div class="callout-text"><span class="private-content">Default split is 35/30/25/10% based on: proven FTD track record (Blockchain-Ads), dual-product fit (AADS), unique Telegram inventory unavailable elsewhere (RichAds), and limited format value (ROIAds). Dollar amounts apply those percentages to the $30k total. CPA estimates came directly from RichAds' GEO-level media plan.</span><span class="guest-content">Allocation percentages based on: conversion track record, dual-product fit, unique inventory access, and relative format value. Exact amounts and methodology available in full report.</span></div></div>
   <div class="callout pending reveal"><div class="callout-title">Launch Sequencing</div><div class="callout-text"><span class="private-content">Stagger Blockchain-Ads + RichAds push by 1 week on the same GEOs. Establish a clean baseline before overlap activates so attribution is clear.</span><span class="guest-content">Stagger Network D + Network A launches by 1 week on overlapping targets. Establish a clean baseline before overlap activates.</span></div></div>
 </section>
 
@@ -839,22 +843,68 @@ function toggleMenu() {
 }
 
 // ── BUDGET SLIDERS ──
-const TOTAL = 30000;
-function updateBudget() {
-  const bc = +document.getElementById('bcSlider').value;
-  const aads = +document.getElementById('aadsSlider').value;
-  const ra = +document.getElementById('raSlider').value;
-  const roi = +document.getElementById('roiSlider').value;
-  const sum = bc + aads + ra + roi || 1;
-  const fmtP = (pct, s) => Math.round(pct / s * 100) + '%';
-  document.getElementById('bcPct').textContent = fmtP(bc, sum);
-  document.getElementById('aadsPct').textContent = fmtP(aads, sum);
-  document.getElementById('raPct').textContent = fmtP(ra, sum);
-  document.getElementById('roiPct').textContent = fmtP(roi, sum);
-  document.getElementById('bcSlider').style.setProperty('--pct', bc + '%');
-  document.getElementById('aadsSlider').style.setProperty('--pct', aads + '%');
-  document.getElementById('raSlider').style.setProperty('--pct', ra + '%');
-  document.getElementById('roiSlider').style.setProperty('--pct', roi + '%');
+// ── BUDGET SLIDERS (locked to 100%) ──
+const sliderIds = ['bcSlider','aadsSlider','raSlider','roiSlider'];
+const pctIds    = ['bcPct','aadsPct','raPct','roiPct'];
+const amountIds = ['bcAmount','aadsAmount','raAmount','roiAmount'];
+const colors    = ['#ff6b35','#f5c842','#5b6aff','#22c97a'];
+
+let _activeSlider = null;
+
+function getTotal() {
+  const v = parseFloat(document.getElementById('totalBudgetInput')?.value) || 30000;
+  return Math.max(0, v);
+}
+
+function fmt$(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function updateBudget(changedId) {
+  // Raw values
+  const vals = sliderIds.map(id => +document.getElementById(id).value);
+  const sum = vals.reduce((a,b) => a+b, 0) || 1;
+
+  // If a slider was moved, lock others proportionally so total stays 100
+  if (changedId) {
+    const idx = sliderIds.indexOf(changedId);
+    const changed = vals[idx];
+    const remaining = 100 - changed;
+    const othersSum = vals.reduce((a,b,i) => i===idx ? a : a+b, 0) || 1;
+    sliderIds.forEach((id, i) => {
+      if (i === idx) return;
+      const newVal = Math.max(0, Math.round((vals[i] / othersSum) * remaining));
+      document.getElementById(id).value = newVal;
+      vals[i] = newVal;
+    });
+    // Fix rounding so they always sum to exactly 100
+    const newSum = vals.reduce((a,b) => a+b, 0);
+    if (newSum !== 100) {
+      // Add/subtract remainder to the largest non-active slider
+      const diff = 100 - newSum;
+      const others = sliderIds.map((id,i) => ({id,i,v:vals[i]})).filter(x=>x.i!==idx).sort((a,b)=>b.v-a.v);
+      if (others.length) {
+        vals[others[0].i] = Math.max(0, vals[others[0].i] + diff);
+        document.getElementById(others[0].id).value = vals[others[0].i];
+      }
+    }
+  }
+
+  const total = getTotal();
+  const finalSum = vals.reduce((a,b)=>a+b,0) || 1;
+
+  sliderIds.forEach((id, i) => {
+    const pct = Math.round(vals[i] / finalSum * 100);
+    const dollars = total * vals[i] / finalSum;
+    document.getElementById(pctIds[i]).textContent = pct + '%';
+    // Only update amount display in private mode
+    const amountEl = document.getElementById(amountIds[i]);
+    if (amountEl) {
+      const pvt = amountEl.querySelector('.private-content');
+      if (pvt) pvt.textContent = fmt$(dollars);
+    }
+    document.getElementById(id).style.setProperty('--pct', vals[i] + '%');
+  });
 }
 
 // ── SCROLL SPY ──
