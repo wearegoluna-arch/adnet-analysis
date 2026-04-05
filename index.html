@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ad Network Analysis</title>
-<meta name="description" content="iGaming ad network evaluation. 4-agency analysis covering overlap, budget allocation, and vendor intelligence.">
+<title>Vendor Evaluation Report</title>
+<meta name="description" content="Confidential vendor evaluation report. Internal use only.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -430,7 +430,7 @@
   <div class="login-box">
     <div class="login-logo">AdNet Analysis</div>
     <div class="login-title">Access Required</div>
-    <div class="login-subtitle">Enter the password to view the full report, or continue as a guest to view the redacted version.</div>
+    <div class="login-subtitle">Enter your access code to view the complete report, or continue to view the restricted summary.</div>
     <input type="password" class="login-input" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()">
     <div class="login-error" id="loginError">Incorrect password. Try again.</div>
     <button class="login-btn" onclick="tryLogin()">Enter Full Report</button>
@@ -456,7 +456,7 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-logo">AdNet Analysis</div>
+  <div class="nav-logo"><span class="private-content">AdNet Analysis</span><span class="guest-content">Evaluation Report</span></div>
   <ul class="nav-links">
     <li><a href="#networks">Networks</a></li>
     <li><a href="#overlap">Overlap</a></li>
@@ -481,30 +481,29 @@
 
 <!-- ── STATUS STRIP ── -->
 <div class="status-strip">
-  <span class="strip-label">Live Vendor Status</span>
-  <span class="status-badge answered"><span class="dot"></span>Network A — Answered</span>
-  <span class="status-badge answered"><span class="dot"></span>Network B — Answered</span>
-  <span class="status-badge pending"><span class="dot"></span>Network C — Case study pending</span>
+  <span class="strip-label">Vendor Status</span>
+  <span class="status-badge answered"><span class="dot"></span>Network A — Responded</span>
+  <span class="status-badge answered"><span class="dot"></span>Network B — Responded</span>
+  <span class="status-badge pending"><span class="dot"></span>Network C — Pending</span>
   <span class="status-badge no-response"><span class="dot"></span>Network D — No response</span>
 </div>
 
 <!-- ── GUEST BANNER ── -->
 <div class="guest-banner">
-  <div class="guest-banner-text"><strong>Guest Mode:</strong> Sensitive details are redacted. Enter the password to view the full report including product names, vendor quotes, and budget specifics.</div>
+  <div class="guest-banner-text"><strong>Restricted View:</strong> This is a redacted summary. Enter the access code to view the complete report.</div>
   <button class="guest-banner-btn" onclick="showLoginFromBadge()">Unlock Full Report</button>
 </div>
 
 <!-- ── HERO ── -->
 <div class="hero">
   <div class="hero-eyebrow">
-    <span class="private-content">GoLuna &amp; Hotshot</span>
-    <span class="guest-content">[Crypto Casino] &amp; [PvP Game]</span>
-    — iGaming Ad Network Evaluation
+    <span class="private-content">GoLuna &amp; Hotshot — iGaming Ad Network Evaluation</span>
+    <span class="guest-content">Vendor Evaluation Report — Confidential</span>
   </div>
-  <h1>Ad Network<br><span>Analysis</span> &amp;<br><em>Evaluation</em></h1>
-  <p class="hero-purpose">Use this to <strong>select and allocate your test budget</strong> across 4 iGaming ad networks for
+  <h1><span class="private-content">Ad Network<br><span style="color:var(--accent)">Analysis</span> &amp;<br><span style="color:var(--gold)">Evaluation</span></span><span class="guest-content">Vendor<br><span style="color:var(--accent)">Evaluation</span><br><span style="color:var(--gold)">Report</span></span></h1>
+  <p class="hero-purpose">Use this to <strong>select and allocate your test budget</strong> across 4 <span class="private-content">iGaming </span>ad networks for
     <span class="private-content">GoLuna (crypto casino) and Hotshot (real-money PvP game).</span>
-    <span class="guest-content">a crypto casino and a real-money PvP game.</span>
+    <span class="guest-content">two client products across multiple verticals.</span>
   </p>
   <div class="hero-summary reveal">
     <div class="summary-stat"><div class="num">4</div><div class="label">Networks evaluated</div></div>
@@ -519,37 +518,37 @@
 
 <!-- ── NETWORKS ── -->
 <section id="networks">
-  <div class="section-eyebrow">What each network does</div>
+  <div class="section-eyebrow"><span class="private-content">What each network does</span><span class="guest-content">Vendor profiles</span></div>
   <h2 class="section-title">Agency Overview</h2>
   <div class="agency-grid reveal">
     <div class="agency-card richads">
-      <div class="agency-name">RichAds</div>
-      <div class="agency-type">Self-serve + Managed Network</div>
-      <p class="agency-desc">Large publisher network across 190+ GEOs. Most differentiated format stack: push, pop, native, display, and Telegram mini-app inventory. GEO-level CPA benchmarks available. Managed VIP at $10k FTD.</p>
-      <div class="agency-tags"><span class="tag">Push</span><span class="tag">Pop</span><span class="tag">Telegram</span><span class="tag">Native</span><span class="tag">190+ GEOs</span></div>
+      <div class="agency-name"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div>
+      <div class="agency-type"><span class="private-content">Self-serve + Managed Network</span><span class="guest-content">Ad Network</span></div>
+      <p class="agency-desc"><span class="private-content">Large publisher network across 190+ GEOs. Most differentiated format stack: push, pop, native, display, and Telegram mini-app inventory. GEO-level CPA benchmarks available. Managed VIP at $10k FTD.</span><span class="guest-content">Large-scale ad network with diverse inventory formats across multiple regions. Managed service available.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Push</span><span class="tag">Pop</span><span class="tag">Telegram</span><span class="tag">Native</span><span class="tag">190+ GEOs</span></span><span class="guest-content"><span class="tag">Display</span><span class="tag">Native</span><span class="tag">Multi-format</span><span class="tag">Global reach</span></span></div>
     </div>
     <div class="agency-card roiads">
-      <div class="agency-name">ROIAds</div>
-      <div class="agency-type">iGaming-Specialized Managed Network</div>
-      <p class="agency-desc">Performance-focused managed network specializing in iGaming. Push and pop only. Explicit fiat and crypto casino support. Full managed campaigns with S2S deposit tracking.</p>
-      <div class="agency-tags"><span class="tag">Push</span><span class="tag">Pop</span><span class="tag">iGaming Focus</span><span class="tag">S2S Tracking</span></div>
+      <div class="agency-name"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div>
+      <div class="agency-type"><span class="private-content">iGaming-Specialized Managed Network</span><span class="guest-content">Managed Ad Network</span></div>
+      <p class="agency-desc"><span class="private-content">Performance-focused managed network specializing in iGaming. Push and pop only. Explicit fiat and crypto casino support. Full managed campaigns with S2S deposit tracking.</span><span class="guest-content">Performance-focused managed network with vertical specialization. Full managed campaign service with conversion tracking.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Push</span><span class="tag">Pop</span><span class="tag">iGaming Focus</span><span class="tag">S2S Tracking</span></span><span class="guest-content"><span class="tag">Managed Service</span><span class="tag">Performance</span><span class="tag">Conversion Tracking</span></span></div>
     </div>
     <div class="agency-card aads">
-      <div class="agency-name">AADS</div>
-      <div class="agency-type">Web3-Native Full-Funnel Network</div>
-      <p class="agency-desc">Two platforms: AADS (600+ crypto publishers) and Slise (100+ premium wallet-connected inventory). Only agency with KOL/streamer, press release, and editorial channels.</p>
-      <div class="agency-tags"><span class="tag">Banner</span><span class="tag">KOL</span><span class="tag">Editorial</span><span class="tag">Slise Premium</span><span class="tag">Crypto-Native</span></div>
+      <div class="agency-name"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div>
+      <div class="agency-type"><span class="private-content">Web3-Native Full-Funnel Network</span><span class="guest-content">Full-Funnel Ad Network</span></div>
+      <p class="agency-desc"><span class="private-content">Two platforms: AADS (600+ crypto publishers) and Slise (100+ premium wallet-connected inventory). Only agency with KOL/streamer, press release, and editorial channels.</span><span class="guest-content">Dual-platform network with premium publisher inventory. Broadest channel mix including influencer, editorial, and display formats.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Banner</span><span class="tag">KOL</span><span class="tag">Editorial</span><span class="tag">Slise Premium</span><span class="tag">Crypto-Native</span></span><span class="guest-content"><span class="tag">Display</span><span class="tag">Influencer</span><span class="tag">Editorial</span><span class="tag">Premium Inventory</span></span></div>
     </div>
     <div class="agency-card blockchain">
-      <div class="agency-name">Blockchain-Ads</div>
-      <div class="agency-type">Web3-Native Programmatic DSP</div>
+      <div class="agency-name"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div>
+      <div class="agency-type"><span class="private-content">Web3-Native Programmatic DSP</span><span class="guest-content">Programmatic Ad Network</span></div>
       <p class="agency-desc">
-        Strongest iGaming case study portfolio.
+        <span class="private-content">Strongest iGaming case study portfolio.</span><span class="guest-content">Strongest case study portfolio.</span>
         <span class="private-content">Stake, DafaBet, BetPanda, Roobet — all directly comparable crypto casino brands.</span>
-        <span class="guest-content">Multiple major crypto casino brands in portfolio.</span>
+        <span class="guest-content">Multiple major client brands in portfolio.</span>
         No media plan, no pricing, and no response to questions.
       </p>
-      <div class="agency-tags"><span class="tag">Programmatic</span><span class="tag">Crypto-Native</span><span class="tag">FTD Focus</span><span class="tag" style="color:var(--color-avoid)">No Pricing</span></div>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Programmatic</span><span class="tag">Crypto-Native</span><span class="tag">FTD Focus</span><span class="tag" style="color:var(--color-avoid)">No Pricing</span></span><span class="guest-content"><span class="tag">Programmatic</span><span class="tag">Performance</span><span class="tag" style="color:var(--color-avoid)">Incomplete proposal</span></span></div>
     </div>
   </div>
 </section>
@@ -565,42 +564,39 @@
     <div class="color-guide-item"><div class="color-guide-stripe" style="background:var(--color-proceed)"></div><div><div class="color-guide-label" style="color:var(--color-proceed)">Low Risk — Safe to run together</div><div class="color-guide-desc">Safest pair. No special setup needed.</div></div></div>
   </div>
   <div class="overlap-grid reveal">
-    <div class="overlap-card high"><div class="overlap-pair">RichAds + ROIAds</div><div class="overlap-risk high">High Overlap Risk</div><div class="overlap-desc">Identical formats (push + pop), overlapping device push databases, same iGaming vertical. High probability of paying for the same user twice.</div></div>
-    <div class="overlap-card medium"><div class="overlap-pair">AADS + Blockchain-Ads</div><div class="overlap-risk medium">Medium Overlap Risk</div><div class="overlap-desc">Both target Web3/crypto publisher inventory. Slise and Blockchain-Ads may share wallet/explorer site inventory. Confirm before running concurrently.</div></div>
-    <div class="overlap-card low-medium"><div class="overlap-pair">RichAds + AADS</div><div class="overlap-risk low-medium">Low-Medium Risk</div><div class="overlap-desc">Some gaming site overlap but different inventory pools. RichAds is mainstream web, AADS is crypto-native. Safer to run concurrently.</div></div>
-    <div class="overlap-card low"><div class="overlap-pair">ROIAds + AADS</div><div class="overlap-risk low">Low Risk</div><div class="overlap-desc">Different formats and inventory sources entirely. Safest pair to run simultaneously. No special deduplication needed.</div></div>
+    <div class="overlap-card high"><div class="overlap-pair"><span class="private-content">RichAds + ROIAds</span><span class="guest-content">Network A + Network B</span></div><div class="overlap-risk high">High Overlap Risk</div><div class="overlap-desc"><span class="private-content">Identical formats (push + pop), overlapping device push databases, same iGaming vertical. High probability of paying for the same user twice.</span><span class="guest-content">Identical inventory formats and publisher databases. High probability of paying for the same user twice.</span></div></div>
+    <div class="overlap-card medium"><div class="overlap-pair"><span class="private-content">AADS + Blockchain-Ads</span><span class="guest-content">Network C + Network D</span></div><div class="overlap-risk medium">Medium Overlap Risk</div><div class="overlap-desc"><span class="private-content">Both target Web3/crypto publisher inventory. Slise and Blockchain-Ads may share wallet/explorer site inventory. Confirm before running concurrently.</span><span class="guest-content">Both access overlapping publisher inventory. Confirm overlap before running concurrently.</span></div></div>
+    <div class="overlap-card low-medium"><div class="overlap-pair"><span class="private-content">RichAds + AADS</span><span class="guest-content">Network A + Network C</span></div><div class="overlap-risk low-medium">Low-Medium Risk</div><div class="overlap-desc"><span class="private-content">Some gaming site overlap but different inventory pools. RichAds is mainstream web, AADS is crypto-native. Safer to run concurrently.</span><span class="guest-content">Some site overlap but different primary inventory pools. Safer to run concurrently with frequency capping.</span></div></div>
+    <div class="overlap-card low"><div class="overlap-pair"><span class="private-content">ROIAds + AADS</span><span class="guest-content">Network B + Network C</span></div><div class="overlap-risk low">Low Risk</div><div class="overlap-desc"><span class="private-content">Different formats and inventory sources entirely. Safest pair to run simultaneously. No special deduplication needed.</span><span class="guest-content">Different formats and inventory sources entirely. Safest pair to run simultaneously.</span></div></div>
   </div>
-  <div class="callout caution reveal"><div class="callout-title">Concurrency Rule</div><div class="callout-text">Never run RichAds + ROIAds on the same GEO without S2S deduplication at pixel level. Flag AADS + Blockchain-Ads to disclose publisher list overlap before allocating budget to both simultaneously.</div></div>
+  <div class="callout caution reveal"><div class="callout-title">Concurrency Rule</div><div class="callout-text"><span class="private-content">Never run RichAds + ROIAds on the same GEO without S2S deduplication at pixel level. Flag AADS + Blockchain-Ads to disclose publisher list overlap before allocating budget to both simultaneously.</span><span class="guest-content">Never run Network A + Network B concurrently on the same targeting parameters without deduplication. Confirm inventory overlap between Network C + Network D before running both simultaneously.</span></div></div>
 </section>
 
 <!-- ── COMPARE ── -->
 <section id="compare">
   <div class="section-eyebrow">Side-by-side breakdown</div>
-  <h2 class="section-title">Full Comparison</h2>
+  <h2 class="section-title"><span class="private-content">Full Comparison</span><span class="guest-content">Network Comparison</span></h2>
   <div class="table-outer reveal">
     <table>
-      <thead><tr><th>Dimension</th><th>RichAds</th><th>ROIAds</th><th>AADS</th><th>Blockchain-Ads</th></tr></thead>
+      <thead><tr><th>Dimension</th><th><span class="private-content">RichAds</span><span class="guest-content">Network A</span></th><th><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></th><th><span class="private-content">AADS</span><span class="guest-content">Network C</span></th><th><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></th></tr></thead>
       <tbody>
-        <tr><td>Primary traffic</td><td>Push, Pop, Telegram, Native</td><td>Push, Pop</td><td>Banner, KOL, Editorial</td><td>Programmatic (implied)</td></tr>
-        <tr><td>Placements</td><td>Publisher zones, Telegram bots</td><td>Gaming, news, adult, skin-buying</td><td>Crypto wallets, DeFi, NFT, gaming wikis</td><td>Crypto/iGaming (implied)</td></tr>
-        <tr><td>Payment model</td><td>CPC + CPM</td><td>CPC + CPM</td><td>Flexible allocation</td><td>Unspecified</td></tr>
-        <tr><td>Min budget</td><td>$10k FTD (managed VIP)</td><td>$1,500-2,000</td><td>~$20k+ implied</td><td>Unspecified</td></tr>
-        <tr><td>Managed service</td><td><span class="check">✓</span> Yes ($10k VIP)</td><td><span class="check">✓</span> Yes (full managed)</td><td><span class="check">✓</span> Yes (dedicated lead)</td><td><span class="warn">~</span> Implied</td></tr>
-        <tr><td>S2S tracking</td><td><span class="check">✓</span> Yes</td><td><span class="check">✓</span> Yes (reg + deposit)</td><td><span class="warn">~</span> AADS: Voluum. Slise: in dev</td><td><span class="warn">~</span> Implied</td></tr>
-        <tr><td>Crypto casino</td><td><span class="check">✓</span> Likely yes</td><td><span class="check">✓</span> Explicitly yes</td><td><span class="check">✓</span> Core use case</td><td><span class="check">✓</span> Core use case</td></tr>
-        <tr><td>PvP game fit</td><td><span class="warn">~</span> Gaming zones available</td><td><span class="warn">~</span> Skin-buying/gaming sites</td><td><span class="check">✓</span> KOLs + gaming wikis</td><td><span class="cross">✗</span> No gaming evidence</td></tr>
-        <tr><td>iGaming cases</td><td><span class="check">✓</span> GEO-level CPA data</td><td><span class="check">✓</span> Deposit data pending</td><td><span class="check">✓</span> whale.io, chiliz</td><td><span class="check">✓</span>
-          <span class="private-content">Stake, Roobet, DafaBet</span>
-          <span class="guest-content">[Major crypto casino brands]</span>
-        </td></tr>
+        <tr><td>Primary traffic</td><td><span class="private-content">Push, Pop, Telegram, Native</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Push, Pop</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Banner, KOL, Editorial</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Programmatic (implied)</span><span class="guest-content">Confidential</span></td></tr>
+        <tr><td>Placements</td><td><span class="private-content">Publisher zones, Telegram bots</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Gaming, news, adult, skin-buying</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Crypto wallets, DeFi, NFT, gaming wikis</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Crypto/iGaming (implied)</span><span class="guest-content">Confidential</span></td></tr>
+        <tr><td>Payment model</td><td><span class="private-content">CPC + CPM</span><span class="guest-content">Confidential</span></td><td><span class="private-content">CPC + CPM</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Flexible allocation</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Unspecified</span><span class="guest-content">Confidential</span></td></tr>
+        <tr><td>Min budget</td><td><span class="private-content">$10k FTD (managed VIP)</span><span class="guest-content">Confidential</span></td><td><span class="private-content">$1,500-2,000</span><span class="guest-content">Confidential</span></td><td><span class="private-content">~$20k+ implied</span><span class="guest-content">Confidential</span></td><td><span class="private-content">Unspecified</span><span class="guest-content">Confidential</span></td></tr>
+        <tr><td>Managed service</td><td><span class="private-content"><span class="check">✓</span> Yes ($10k VIP)</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Yes (full managed)</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Yes (dedicated lead)</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="warn">~</span> Implied</span><span class="guest-content"><span class="warn">~</span> Unconfirmed</span></td></tr>
+        <tr><td>S2S tracking</td><td><span class="private-content"><span class="check">✓</span> Yes</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Yes (reg + deposit)</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="warn">~</span> AADS: Voluum. Slise: in dev</span><span class="guest-content"><span class="warn">~</span> Partial</span></td><td><span class="private-content"><span class="warn">~</span> Implied</span><span class="guest-content"><span class="warn">~</span> Unconfirmed</span></td></tr>
+        <tr><td><span class="private-content">Crypto casino</span><span class="guest-content">Vertical fit A</span></td><td><span class="private-content"><span class="check">✓</span> Likely yes</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Explicitly yes</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Core use case</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="check">✓</span> Core use case</span><span class="guest-content"><span class="check">✓</span> Yes</span></td></tr>
+        <tr><td><span class="private-content">PvP game fit</span><span class="guest-content">Vertical fit B</span></td><td><span class="private-content"><span class="warn">~</span> Gaming zones available</span><span class="guest-content"><span class="warn">~</span> Partial</span></td><td><span class="private-content"><span class="warn">~</span> Skin-buying/gaming sites</span><span class="guest-content"><span class="warn">~</span> Partial</span></td><td><span class="private-content"><span class="check">✓</span> KOLs + gaming wikis</span><span class="guest-content"><span class="check">✓</span> Yes</span></td><td><span class="private-content"><span class="cross">✗</span> <span class="private-content">No gaming evidence</span><span class="guest-content">No evidence</span></span><span class="guest-content"><span class="cross">✗</span> No evidence</span></td></tr>
+        <tr><td><span class="private-content">iGaming cases</span><span class="guest-content">Case studies</span></td><td><span class="private-content"><span class="check">✓</span> GEO-level CPA data</span><span class="guest-content"><span class="check">✓</span> Available</span></td><td><span class="private-content"><span class="check">✓</span> Deposit data pending</span><span class="guest-content"><span class="check">✓</span> Pending</span></td><td><span class="private-content"><span class="check">✓</span> whale.io, chiliz</span><span class="guest-content"><span class="check">✓</span> Available</span></td><td><span class="private-content"><span class="check">✓</span> Stake, Roobet, DafaBet</span><span class="guest-content"><span class="check">✓</span> Available</span></td></tr>
       </tbody>
     </table>
   </div>
   <div class="mobile-table reveal">
-    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #5b6aff">RichAds</div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value">Push, Pop, Telegram, Native</div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value">$10k FTD (managed)</div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Yes</div></div><div class="mobile-row"><div class="mobile-row-label">Crypto Casino</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Likely yes</div></div><div class="mobile-row"><div class="mobile-row-label">PvP Game</div><div class="mobile-row-value" style="color:var(--color-caution)">~ Gaming zones</div></div></div>
-    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #22c97a">ROIAds</div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value">Push, Pop</div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value">$1,500-2,000</div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Yes</div></div><div class="mobile-row"><div class="mobile-row-label">Crypto Casino</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Explicitly yes</div></div><div class="mobile-row"><div class="mobile-row-label">PvP Game</div><div class="mobile-row-value" style="color:var(--color-caution)">~ Skin-buying sites</div></div></div>
-    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #f5c842">AADS</div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value">Banner, KOL, Editorial</div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value">~$20k+ implied</div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-caution)">~ Partial (Slise in dev)</div></div><div class="mobile-row"><div class="mobile-row-label">Crypto Casino</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Core use case</div></div><div class="mobile-row"><div class="mobile-row-label">PvP Game</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ KOLs + gaming wikis</div></div></div>
-    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #ff6b35">Blockchain-Ads</div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value">Programmatic (implied)</div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value">Unspecified</div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-caution)">~ Implied via cases</div></div><div class="mobile-row"><div class="mobile-row-label">Crypto Casino</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Core use case</div></div><div class="mobile-row"><div class="mobile-row-label">PvP Game</div><div class="mobile-row-value" style="color:var(--color-avoid)">✗ No evidence</div></div></div>
+    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #5b6aff"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value"><span class="private-content">Push, Pop, Telegram, Native</span><span class="guest-content">Multi-format</span></div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value"><span class="private-content">$10k FTD (managed)</span><span class="guest-content">Confidential</span></div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Yes</div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">Crypto Casino</span><span class="guest-content">Vertical fit A</span></div><div class="mobile-row-value" style="color:var(--color-proceed)"><span class="private-content">✓ Likely yes</span><span class="guest-content">✓ Yes</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">PvP Game</span><span class="guest-content">Vertical fit B</span></div><div class="mobile-row-value" style="color:var(--color-caution)"><span class="private-content">~ Gaming zones</span><span class="guest-content">~ Partial</span></div></div></div>
+    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #22c97a"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value"><span class="private-content">Push, Pop</span><span class="guest-content">Performance formats</span></div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value"><span class="private-content">$1,500-2,000</span><span class="guest-content">Confidential</span></div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-proceed)">✓ Yes</div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">Crypto Casino</span><span class="guest-content">Vertical fit A</span></div><div class="mobile-row-value" style="color:var(--color-proceed)"><span class="private-content">✓ Explicitly yes</span><span class="guest-content">✓ Yes</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">PvP Game</span><span class="guest-content">Vertical fit B</span></div><div class="mobile-row-value" style="color:var(--color-caution)"><span class="private-content">~ Skin-buying sites</span><span class="guest-content">~ Partial</span></div></div></div>
+    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #f5c842"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value"><span class="private-content">Banner, KOL, Editorial</span><span class="guest-content">Full-funnel</span></div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value"><span class="private-content">~$20k+ implied</span><span class="guest-content">Confidential</span></div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-caution)"><span class="private-content">~ Partial (Slise in dev)</span><span class="guest-content">~ Partial</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">Crypto Casino</span><span class="guest-content">Vertical fit A</span></div><div class="mobile-row-value" style="color:var(--color-proceed)"><span class="private-content">✓ Core use case</span><span class="guest-content">✓ Yes</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">PvP Game</span><span class="guest-content">Vertical fit B</span></div><div class="mobile-row-value" style="color:var(--color-proceed)"><span class="private-content">✓ KOLs + gaming wikis</span><span class="guest-content">✓ Yes</span></div></div></div>
+    <div class="mobile-agency-card"><div class="mobile-agency-header" style="border-left:4px solid #ff6b35"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div><div class="mobile-row"><div class="mobile-row-label">Traffic</div><div class="mobile-row-value"><span class="private-content">Programmatic (implied)</span><span class="guest-content">Programmatic</span></div></div><div class="mobile-row"><div class="mobile-row-label">Min Budget</div><div class="mobile-row-value"><span class="private-content">Unspecified</span><span class="guest-content">Confidential</span></div></div><div class="mobile-row"><div class="mobile-row-label">S2S Tracking</div><div class="mobile-row-value" style="color:var(--color-caution)"><span class="private-content">~ Implied via cases</span><span class="guest-content">~ Unconfirmed</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">Crypto Casino</span><span class="guest-content">Vertical fit A</span></div><div class="mobile-row-value" style="color:var(--color-proceed)"><span class="private-content">✓ Core use case</span><span class="guest-content">✓ Yes</span></div></div><div class="mobile-row"><div class="mobile-row-label"><span class="private-content">PvP Game</span><span class="guest-content">Vertical fit B</span></div><div class="mobile-row-value" style="color:var(--color-avoid)">✗ No evidence</div></div></div>
   </div>
 </section>
 
@@ -612,24 +608,24 @@
     <div class="product-card">
       <div class="product-name">
         <span class="private-content">GoLuna</span>
-        <span class="guest-content">Crypto Casino</span>
+        <span class="guest-content">Product A</span>
       </div>
-      <div class="product-type">Crypto Casino</div>
-      <div class="ranking-item"><div class="rank-num gold">1</div><div><div class="rank-agency">Blockchain-Ads</div><div class="rank-reason">All four case studies are directly comparable crypto casino brands. FTD-focused tracking aligns perfectly with casino KPIs.</div></div></div>
-      <div class="ranking-item"><div class="rank-num blue">2</div><div><div class="rank-agency">AADS</div><div class="rank-reason">Crypto-native audience is exactly the right customer: wallet holders, DeFi users, NFT buyers. Slise wallet inventory is premium for crypto casino acquisition.</div></div></div>
-      <div class="ranking-item"><div class="rank-num">3</div><div><div class="rank-agency">RichAds</div><div class="rank-reason">GEO-level CPA estimates and Telegram mini-app inventory. Only network offering Telegram at scale — an underutilized crypto casino channel.</div></div></div>
-      <div class="ranking-item"><div class="rank-num">4</div><div><div class="rank-agency">ROIAds</div><div class="rank-reason">Overlaps almost entirely with RichAds at worse format diversity. Use only for adult-placement GEOs.</div></div></div>
+      <div class="product-type"><span class="private-content"><span class="private-content">Crypto Casino</span><span class="guest-content">Vertical fit A</span></span><span class="guest-content">Client Product</span></div>
+      <div class="ranking-item"><div class="rank-num gold">1</div><div><div class="rank-agency"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div><div class="rank-reason"><span class="private-content">All four case studies are directly comparable crypto casino brands. FTD-focused tracking aligns perfectly with casino KPIs.</span><span class="guest-content">Strongest case study portfolio directly relevant to Product A. Conversion-focused tracking aligns with primary KPIs.</span></div></div></div>
+      <div class="ranking-item"><div class="rank-num blue">2</div><div><div class="rank-agency"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div><div class="rank-reason"><span class="private-content">Crypto-native audience is exactly the right customer: wallet holders, DeFi users, NFT buyers. Slise wallet inventory is premium for crypto casino acquisition.</span><span class="guest-content">Audience profile closely matches target customer for Product A. Premium inventory with strong engagement metrics.</span></div></div></div>
+      <div class="ranking-item"><div class="rank-num">3</div><div><div class="rank-agency"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div><div class="rank-reason"><span class="private-content">GEO-level CPA estimates and Telegram mini-app inventory. Only network offering Telegram at scale — an underutilized crypto casino channel.</span><span class="guest-content">Regional CPA benchmarks available. Unique inventory format not offered by other evaluated networks.</span></div></div></div>
+      <div class="ranking-item"><div class="rank-num">4</div><div><div class="rank-agency"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div><div class="rank-reason"><span class="private-content">Overlaps almost entirely with RichAds at worse format diversity. Use only for adult-placement GEOs.</span><span class="guest-content">Significant inventory overlap with Network A at reduced format diversity. Limited to specific placement scenarios.</span></div></div></div>
     </div>
     <div class="product-card">
       <div class="product-name">
         <span class="private-content">Hotshot</span>
-        <span class="guest-content">PvP Game</span>
+        <span class="guest-content">Product B</span>
       </div>
-      <div class="product-type">Real-Money PvP Shooter</div>
-      <div class="ranking-item"><div class="rank-num gold">1</div><div><div class="rank-agency">AADS</div><div class="rank-reason">KOL and streamer channel is the highest-value channel for a competitive PvP game. Slise gaming wiki/tool inventory reaches active PC gamers.</div></div></div>
-      <div class="ranking-item"><div class="rank-num blue">2</div><div><div class="rank-agency">RichAds</div><div class="rank-reason">Telegram gaming communities are a natural fit. Playable ad formats could demo the gameplay loop effectively.</div></div></div>
-      <div class="ranking-item"><div class="rank-num">3</div><div><div class="rank-agency">ROIAds</div><div class="rank-reason">Skin-buying site placements overlap with competitive shooter audiences. Lower quality format for game acquisition but relevant placement categories.</div></div></div>
-      <div class="ranking-item"><div class="rank-num">4</div><div><div class="rank-agency">Blockchain-Ads</div><div class="rank-reason">All case studies are casino brands. No evidence of gaming or esports audience access. Do not use until gaming reach is demonstrated.</div></div></div>
+      <div class="product-type"><span class="private-content">Real-Money PvP Shooter</span><span class="guest-content">Client Product</span></div>
+      <div class="ranking-item"><div class="rank-num gold">1</div><div><div class="rank-agency"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div><div class="rank-reason">KOL and streamer channel is the highest-value channel for a competitive PvP game. Slise gaming wiki/tool inventory reaches active PC gamers.</div></div></div>
+      <div class="ranking-item"><div class="rank-num blue">2</div><div><div class="rank-agency"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div><div class="rank-reason"><span class="private-content">Telegram gaming communities are a natural fit. Playable ad formats could demo the gameplay loop effectively.</span><span class="guest-content">Unique inventory placements align with Product B audience. Interactive ad formats available.</span></div></div></div>
+      <div class="ranking-item"><div class="rank-num">3</div><div><div class="rank-agency"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div><div class="rank-reason"><span class="private-content">Skin-buying site placements overlap with competitive shooter audiences. Lower quality format for game acquisition but relevant placement categories.</span><span class="guest-content">Some placement categories relevant to Product B audience. Lower format quality for acquisition but acceptable reach.</span></div></div></div>
+      <div class="ranking-item"><div class="rank-num">4</div><div><div class="rank-agency"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div><div class="rank-reason"><span class="private-content">All case studies are casino brands. No evidence of gaming or esports audience access. Do not use until gaming reach is demonstrated.</span><span class="guest-content">Case study portfolio not relevant to Product B vertical. No evidence of reach into required audience segment.</span></div></div></div>
     </div>
   </div>
 </section>
@@ -645,21 +641,21 @@
   </div>
   <div class="budget-subtitle">Total test budget across all 4 networks</div>
   <div class="budget-slider-group reveal">
-    <div class="slider-blockchain"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#ff6b35">Blockchain-Ads</div><div><span class="budget-slider-amount" id="bcAmount">
+    <div class="slider-blockchain"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#ff6b35"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div><div><span class="budget-slider-amount" id="bcAmount">
       <span class="private-content">$10,500</span><span class="guest-content">—</span>
     </span><span class="budget-slider-pct" id="bcPct">35%</span></div></div><input type="range" min="0" max="100" value="35" id="bcSlider" oninput="updateBudget()" style="--pct:35%"></div>
-    <div class="slider-aads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#f5c842">AADS</div><div><span class="budget-slider-amount" id="aadsAmount">
+    <div class="slider-aads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#f5c842"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div><div><span class="budget-slider-amount" id="aadsAmount">
       <span class="private-content">$9,000</span><span class="guest-content">—</span>
     </span><span class="budget-slider-pct" id="aadsPct">30%</span></div></div><input type="range" min="0" max="100" value="30" id="aadsSlider" oninput="updateBudget()" style="--pct:30%"></div>
-    <div class="slider-richads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#5b6aff">RichAds</div><div><span class="budget-slider-amount" id="raAmount">
+    <div class="slider-richads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#5b6aff"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div><div><span class="budget-slider-amount" id="raAmount">
       <span class="private-content">$7,500</span><span class="guest-content">—</span>
     </span><span class="budget-slider-pct" id="raPct">25%</span></div></div><input type="range" min="0" max="100" value="25" id="raSlider" oninput="updateBudget()" style="--pct:25%"></div>
-    <div class="slider-roiads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#22c97a">ROIAds</div><div><span class="budget-slider-amount" id="roiAmount">
+    <div class="slider-roiads"><div class="budget-slider-header"><div class="budget-slider-name" style="color:#22c97a"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div><div><span class="budget-slider-amount" id="roiAmount">
       <span class="private-content">$3,000</span><span class="guest-content">—</span>
     </span><span class="budget-slider-pct" id="roiPct">10%</span></div></div><input type="range" min="0" max="100" value="10" id="roiSlider" oninput="updateBudget()" style="--pct:10%"></div>
   </div>
-  <div class="callout info reveal"><div class="callout-title">How these numbers were calculated</div><div class="callout-text">The recommended 35/30/25/10% split is based on: proven FTD track record (Blockchain-Ads), dual-product fit (AADS), unique Telegram inventory unavailable elsewhere (RichAds), and limited format value (ROIAds). <span class="private-content">Dollar amounts apply those percentages to the $30k total. CPA estimates came directly from RichAds' GEO-level media plan.</span><span class="guest-content">Exact dollar amounts are available in the full report.</span></div></div>
-  <div class="callout pending reveal"><div class="callout-title">Launch Sequencing</div><div class="callout-text">Stagger Blockchain-Ads + RichAds push by 1 week on the same GEOs. Establish a clean baseline before overlap activates so attribution is clear.</div></div>
+  <div class="callout info reveal"><div class="callout-title">How these numbers were calculated</div><div class="callout-text"><span class="private-content">The recommended 35/30/25/10% split is based on: proven FTD track record (Blockchain-Ads), dual-product fit (AADS), unique Telegram inventory unavailable elsewhere (RichAds), and limited format value (ROIAds). Dollar amounts apply those percentages to the $30k total. CPA estimates came directly from RichAds' GEO-level media plan.</span><span class="guest-content">Allocation percentages based on: conversion track record, dual-product fit, unique inventory access, and relative format value. Exact amounts and methodology available in full report.</span></div></div>
+  <div class="callout pending reveal"><div class="callout-title">Launch Sequencing</div><div class="callout-text"><span class="private-content">Stagger Blockchain-Ads + RichAds push by 1 week on the same GEOs. Establish a clean baseline before overlap activates so attribution is clear.</span><span class="guest-content">Stagger Network D + Network A launches by 1 week on overlapping targets. Establish a clean baseline before overlap activates.</span></div></div>
 </section>
 
 <!-- ── RESPONSES ── -->
@@ -675,80 +671,80 @@
 
   <div class="qa-grid reveal" id="qaGrid">
     <div class="qa-card answered">
-      <div class="qa-agency">ROIAds</div>
-      <div class="qa-status">Fully answered — Proceed</div>
-      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q">Pricing, minimum spend, trial period?</div>
+      <div class="qa-agency"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div>
+      <div class="qa-status"><span class="private-content">Fully answered — Proceed</span><span class="guest-content">Responded — Under evaluation</span></div>
+      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q"><span class="private-content">Pricing, minimum spend, trial period?</span><span class="guest-content">Pricing and minimum commitment?</span></div>
       <div class="qa-a private-content">Best Tier 1 GEOs: USA, AUS, DEU, FRA, GB, CAN, NOR, NLD, FIN, ESP. Min CPC: $0.003, CPM: $0.50. Recommended bids ~$0.15-0.17 for push, ~$2 for pop. Test budget: $1,500-2,000. No trial period.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Pricing data available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q">Publisher database differentiation?</div>
+      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q"><span class="private-content">Publisher database differentiation?</span><span class="guest-content">Inventory differentiation?</span></div>
       <div class="qa-a private-content">Exclusive and premium publishers working only with their network. Differentiation via S2S postback — configure as traffic source to see clicks, leads, FTDs from their traffic only.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q">Gaming vs skin-buying placement split?</div>
+      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q"><span class="private-content">Gaming vs skin-buying placement split?</span><span class="guest-content">Placement category breakdown?</span></div>
       <div class="qa-a private-content">Cannot specify ratio across 1,000+ publishers. AI Bidding tool (similar to Meta Advantage+) targets most relevant sources. Antifraud keeps bot traffic below 2%.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">Casino/crypto creatives in Tier 1 GEOs?</div>
+      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q"><span class="private-content">Casino/crypto creatives in Tier 1 GEOs?</span><span class="guest-content">Creative and regional restrictions?</span></div>
       <div class="qa-a private-content">Yes — iGaming is their key vertical. Only restrictions: drugs, weapons, pharmacy. Casino and crypto 100% allowed.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q">Deposit-level CPA case study?</div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q"><span class="private-content">Deposit-level CPA case study?</span><span class="guest-content">Conversion-level performance data?</span></div>
       <div class="qa-a pending">Checking ad reports — will share data shortly.</div>
       </div></div>
     </div>
 
     <div class="qa-card answered">
-      <div class="qa-agency">AADS</div>
-      <div class="qa-status">Fully answered — Book call to confirm split</div>
-      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q">Publisher list / inventory quality?</div>
+      <div class="qa-agency"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div>
+      <div class="qa-status"><span class="private-content">Fully answered — Book call to confirm split</span><span class="guest-content">Responded — Under evaluation</span></div>
+      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q"><span class="private-content">Publisher list / inventory quality?</span><span class="guest-content">Inventory quality and access?</span></div>
       <div class="qa-a private-content">AADS (600+): poocoin.app, dexview.com, publish0x.com, alphagames.io. Slise (100+): starkscan.co, blockscout.com, coinstats.app, solscan.io — wallet-connected, active on-chain users.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Publisher list available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q">Conversion tracking implementation?</div>
+      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q"><span class="private-content">Conversion tracking implementation?</span><span class="guest-content">Tracking and attribution setup?</span></div>
       <div class="qa-a private-content">AADS: S2S postback via Voluum. Slise: Dynamic UTM live now, S2S in development. Confirm whether FTD conversion is web-based or in-app before setup.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q">KOL vetting, exclusivity, viewership?</div>
+      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q"><span class="private-content">KOL vetting, exclusivity, viewership?</span><span class="guest-content">Influencer vetting and exclusivity?</span></div>
       <div class="qa-a private-content">KOLs are non-exclusive. Brand ambassador arrangements possible via fixed fee + revenue share. Vetting and viewership vary by creator.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">AADS vs Slise inventory overlap?</div>
+      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q"><span class="private-content">AADS vs Slise inventory overlap?</span><span class="guest-content">Cross-platform inventory overlap?</span></div>
       <div class="qa-a private-content">No overlap — distinct audiences. AADS reaches broad crypto space. Slise targets wallet-connected users (DeFi/NFT activity). Complementary, not duplicative.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q">Minimum test budget split by channel?</div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q"><span class="private-content">Minimum test budget split by channel?</span><span class="guest-content">Minimum channel budget allocation?</span></div>
       <div class="qa-a pending">Deferred to call — will prepare allocation based on budgets, GEOs, and channels discussed.</div>
       </div></div>
     </div>
 
     <div class="qa-card caution">
-      <div class="qa-agency">RichAds</div>
-      <div class="qa-status">Answered vaguely — Get case study before committing</div>
-      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q">Publisher category breakdowns?</div>
+      <div class="qa-agency"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div>
+      <div class="qa-status"><span class="private-content">Answered vaguely — Get case study before committing</span><span class="guest-content">Partial response — Pending follow-up</span></div>
+      <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q"><span class="private-content">Publisher category breakdowns?</span><span class="guest-content">Inventory categorization?</span></div>
       <div class="qa-a private-content">No fixed category breakdowns — all sources under NDA at zone ID level. Whitelists built post-launch based on performance data.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q">Telegram mini-app audience composition?</div>
+      <div class="qa-item"><div class="qa-num">Q2</div><div><div class="qa-q"><span class="private-content">Telegram mini-app audience composition?</span><span class="guest-content">Audience segmentation by channel?</span></div>
       <div class="qa-a private-content">Mixed verticals (gaming, utilities, lifestyle, crypto). No pre-targeting by category. Optimization via whitelist/blacklist post-launch.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q">$10k VIP KPIs and refund policy?</div>
+      <div class="qa-item"><div class="qa-num">Q3</div><div><div class="qa-q"><span class="private-content">$10k VIP KPIs and refund policy?</span><span class="guest-content">Managed service KPIs and refund terms?</span></div>
       <div class="qa-a private-content">No fixed contractual KPIs. Daily monitoring and continuous adjustments. Non-refundable but cases reviewed individually.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">iOS Safari push support?</div>
+      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q"><span class="private-content">iOS Safari push support?</span><span class="guest-content">Platform and device compatibility?</span></div>
       <div class="qa-a private-content">Classic push limited on iOS. In-Page Push available across all devices including iOS. Appears on webpage rather than system notification.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q">Live crypto casino campaign example?</div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q"><span class="private-content">Live crypto casino campaign example?</span><span class="guest-content">Comparable campaign case study?</span></div>
       <div class="qa-a pending">NDA restricts sharing. Following up with partners — expected by Tuesday.</div>
       </div></div>
     </div>
 
     <div class="qa-card no-response">
-      <div class="qa-agency">Blockchain-Ads</div>
-      <div class="qa-status">No response — 48hr deadline issued</div>
+      <div class="qa-agency"><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></div>
+      <div class="qa-status"><span class="private-content">No response — 48hr deadline issued</span><span class="guest-content">No response — Deadline issued</span></div>
       <div class="qa-item"><div class="qa-num">Q1-5</div><div>
       <div class="qa-a no-ans">No response received to any due diligence questions. Sales process appears disorganized or deal was not prioritized. One final follow-up sent with hard deadline. If no response, proceed with 3 networks and revisit next quarter.</div>
       </div></div>
@@ -767,20 +763,20 @@
   <div class="verdict-grid reveal">
     <div class="verdict-card proceed">
       <div class="verdict-label">Proceed now</div>
-      <div class="verdict-item"><strong>ROIAds</strong> — All questions answered. Chase Q5 deposit-level case study before committing full budget.</div>
-      <div class="verdict-item"><strong>AADS</strong> — Solid answers. Book call to lock in budget split and confirm Slise S2S setup for FTD tracking.</div>
+      <div class="verdict-item"><strong><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></strong> — All questions answered. Chase Q5 deposit-level case study before committing full budget.</div>
+      <div class="verdict-item"><strong><span class="private-content">AADS</span><span class="guest-content">Network C</span></strong> — Solid answers. Book call to lock in budget split and confirm Slise S2S setup for FTD tracking.</div>
     </div>
     <div class="verdict-card caution">
       <div class="verdict-label">Proceed with caution</div>
-      <div class="verdict-item"><strong>RichAds</strong> — Get case study before committing to $10k non-refundable VIP. Telegram inventory is unique and worth testing at lower self-serve budget first.</div>
-      <div class="verdict-item"><strong>Blockchain-Ads</strong> — 48-hour deadline follow-up sent. Park if no response. Strongest case study portfolio but zero transparency on pricing or formats.</div>
+      <div class="verdict-item"><strong><span class="private-content">RichAds</span><span class="guest-content">Network A</span></strong> — Get case study before committing to $10k non-refundable VIP. Telegram inventory is unique and worth testing at lower self-serve budget first.</div>
+      <div class="verdict-item"><strong><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></strong> — 48-hour deadline follow-up sent. Park if no response. Strongest case study portfolio but zero transparency on pricing or formats.</div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-note">Confidential — Internal Use Only</div>
-  <div class="footer-note">iGaming Ad Network Evaluation — April 2026</div>
+  <div class="footer-note"><span class="private-content">iGaming Ad Network Evaluation — April 2026</span><span class="guest-content">Vendor Evaluation Report — 2026</span></div>
 </footer>
 
 <script>
