@@ -713,9 +713,9 @@
       </div></div>
     </div>
 
-    <div class="qa-card caution">
+    <div class="qa-card answered">
       <div class="qa-agency"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div>
-      <div class="qa-status"><span class="private-content">Answered vaguely — Get case study before committing</span><span class="guest-content">Partial response — Pending follow-up</span></div>
+      <div class="qa-status"><span class="private-content">Fully answered — Case study received, move to Proceed</span><span class="guest-content">Responded — Under evaluation</span></div>
       <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q"><span class="private-content">Publisher category breakdowns?</span><span class="guest-content">Inventory categorization?</span></div>
       <div class="qa-a private-content">No fixed category breakdowns — all sources under NDA at zone ID level. Whitelists built post-launch based on performance data.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
@@ -732,9 +732,14 @@
       <div class="qa-a private-content">Classic push limited on iOS. In-Page Push available across all devices including iOS. Appears on webpage rather than system notification.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q"><span class="private-content">Live crypto casino campaign example?</span><span class="guest-content">Comparable campaign case study?</span></div>
-      <div class="qa-a pending">NDA restricts sharing. Following up with partners — expected by Tuesday.</div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q"><span class="private-content">Live crypto casino campaign examples?</span><span class="guest-content">Comparable campaign case study?</span></div>
+      <div class="qa-a private-content">12 anonymised campaigns provided (NDA — brand names withheld). Highlights: FRA Push at $3.18 eCPA / 169 conversions ($600/day); NLD Telegram at $1.50 eCPA / 38 conversions ($50/day); ARE Telegram at $2.99 eCPA / 25 conversions ($50/day); IND Direct Click at $3.10 eCPA / 41 conversions ($30/day). Weakest: IND Pops at $26.35 eCPA. Best formats: Telegram and Direct Click. Push works at scale. Pops underperform on eCPA.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details available in full report.</div>
       </div></div>
+      <div class="callout proceed" style="margin-top:16px"><div class="callout-title">Case study received — upgrade to Proceed</div>
+      <div class="callout-text private-content">Data covers 12 campaigns across POL, IND, ARE, CAN, DEU, FRA, IDN, ITA, NGA, NLD. Best eCPAs: NLD Telegram $1.50, ARE Telegram $2.99, IND Direct Click $3.10, FRA Push $3.18. Telegram and Direct Click are the standout formats. Start with Telegram in ARE/NLD and Push in FRA before scaling.</div>
+      <div class="callout-text guest-content">Case study received. Status upgraded. Details in full report.</div>
+      </div>
     </div>
 
     <div class="qa-card answered">
@@ -770,14 +775,16 @@
   <h2 class="section-title">Verdict</h2>
   <div class="verdict-grid reveal">
     <div class="verdict-card proceed">
-      <div class="verdict-label">Proceed now</div>
-      <div class="verdict-item"><strong><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></strong> — Responded after follow-up. Formats, GEOs, exclusivity, and pixel onboarding all confirmed. Reintegrate into budget allocation.</div>
-      <div class="verdict-item"><strong><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></strong> — All questions answered. Chase Q5 deposit-level case study before committing full budget.</div>
-      <div class="verdict-item"><strong><span class="private-content">AADS</span><span class="guest-content">Network C</span></strong> — Solid answers. Book call to lock in budget split and confirm Slise S2S setup for FTD tracking.</div>
+      <div class="verdict-label">Proceed now — all 4 networks</div>
+      <div class="verdict-item"><strong><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></strong> — Formats, GEOs, exclusivity, and pixel onboarding confirmed. Reintegrate into budget.</div>
+      <div class="verdict-item"><strong><span class="private-content">AADS</span><span class="guest-content">Network C</span></strong> — Solid answers. Book call to lock in budget split and confirm Slise S2S setup.</div>
+      <div class="verdict-item"><strong><span class="private-content">RichAds</span><span class="guest-content">Network A</span></strong> — Case study received. Best eCPAs: Telegram ARE/NLD, Direct Click IND. Start self-serve before committing to $10k VIP.</div>
+      <div class="verdict-item"><strong><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></strong> — All questions answered. Request Q5 deposit-level case study before committing full budget.</div>
     </div>
     <div class="verdict-card caution">
-      <div class="verdict-label">Proceed with caution</div>
-      <div class="verdict-item"><strong><span class="private-content">RichAds</span><span class="guest-content">Network A</span></strong> — Get case study before committing to $10k non-refundable VIP. Telegram inventory is unique and worth testing at lower self-serve budget first.</div>
+      <div class="verdict-label">Watch closely</div>
+      <div class="verdict-item"><strong><span class="private-content">RichAds VIP</span><span class="guest-content">Network A managed tier</span></strong> — $10k VIP is non-refundable with no fixed KPIs. Validate with self-serve spend first before upgrading to managed.</div>
+      <div class="verdict-item"><strong><span class="private-content">Deduplication risk</span><span class="guest-content">Overlap risk</span></strong> — Do not run RichAds + ROIAds concurrently on the same GEOs without S2S deduplication in place.</div>
     </div>
   </div>
 </section>
@@ -816,7 +823,7 @@ function enterPrivate() {
     <span class="strip-label">Live Vendor Status</span>
     <span class="status-badge answered"><span class="dot"></span>ROIAds — Answered</span>
     <span class="status-badge answered"><span class="dot"></span>AADS — Answered</span>
-    <span class="status-badge pending"><span class="dot"></span>RichAds — Case study pending</span>
+    <span class="status-badge answered"><span class="dot"></span>RichAds — Answered</span>
     <span class="status-badge answered"><span class="dot"></span>Blockchain-Ads — Answered</span>
   `;
 }
