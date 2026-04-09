@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Due Diligence — Social Proof Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: #ffffff0f;
+    --border2: #ffffff18;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --accent: #5b6aff;
+    --mono: 'Courier New', monospace;
+    --color-avoid: #ff4757;
+    --color-caution: #ff8c42;
+    --color-proceed: #22c97a;
+    --risk-low: #22c97a;
+    --risk-medium: #ff8c42;
+    --risk-high: #ff4757;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── LOGIN OVERLAY ── */
+  #loginOverlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+    padding: 24px;
+  }
+  .login-title { font-family: 'Syne', sans-serif; font-size: 22px; color: var(--text); }
+  .login-sub { font-size: 13px; color: var(--muted); font-family: var(--mono); }
+  .login-input {
+    background: var(--surface2); border: 1px solid var(--border2);
+    color: var(--text); padding: 12px 16px; border-radius: 4px;
+    font-size: 14px; width: 100%; max-width: 360px; outline: none;
+    font-family: var(--mono);
+  }
+  .login-input:focus { border-color: var(--accent); }
+  .login-input.error { border-color: var(--color-avoid); animation: shake .3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  .login-btn {
+    background: var(--accent); color: #fff; border: none;
+    padding: 12px 32px; border-radius: 4px; cursor: pointer;
+    font-family: 'Syne', sans-serif; font-size: 14px; letter-spacing: .05em;
+    width: 100%; max-width: 360px;
+  }
+  .login-btn:hover { opacity: .85; }
+  .login-error { color: var(--color-avoid); font-size: 12px; font-family: var(--mono); min-height: 16px; }
+
+  /* ── MAIN CONTENT ── */
+  #mainContent { display: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border2);
+    padding: 0 32px; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-size: 14px; letter-spacing: .05em; color: var(--text); text-decoration: none; }
+  .nav-back {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    transition: color .2s;
+  }
+  .nav-back:hover { color: var(--text); }
+  .nav-label {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--border2);
+    padding: 3px 10px; border-radius: 2px; letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page-wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── HEADER ── */
+  .page-header { margin-bottom: 48px; }
+  .page-eyebrow {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .page-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 14px;
+  }
+  .page-subtitle { color: var(--muted); font-size: 14px; max-width: 580px; }
+
+  /* ── SUMMARY STRIP ── */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px; background: var(--border2);
+    border: 1px solid var(--border2); border-radius: 6px;
+    overflow: hidden; margin-bottom: 48px;
+  }
+  @media (max-width: 640px) { .summary-strip { grid-template-columns: 1fr 1fr; } }
+  .summary-cell {
+    background: var(--surface); padding: 18px 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .sc-name { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .sc-score { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1; }
+  .sc-score.low { color: var(--risk-low); }
+  .sc-score.medium { color: var(--risk-medium); }
+  .sc-score.high { color: var(--risk-high); }
+  .sc-label { font-size: 10px; color: var(--muted); }
+  .verdict-pill {
+    display: inline-block; font-family: var(--mono); font-size: 9px;
+    letter-spacing: .12em; text-transform: uppercase; padding: 2px 7px;
+    border-radius: 2px; font-weight: 500;
+  }
+  .verdict-pill.proceed { background: rgba(34,201,122,.12); color: var(--color-proceed); border: 1px solid rgba(34,201,122,.25); }
+  .verdict-pill.caution { background: rgba(255,140,66,.12); color: var(--color-caution); border: 1px solid rgba(255,140,66,.25); }
+  .verdict-pill.risk { background: rgba(255,71,87,.12); color: var(--color-avoid); border: 1px solid rgba(255,71,87,.25); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); padding-bottom: 10px;
+    border-bottom: 1px solid var(--border2); margin-bottom: 24px;
+  }
+
+  /* ── NETWORK CARDS ── */
+  .network-card {
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 6px; margin-bottom: 20px; overflow: hidden;
+  }
+  .nc-header {
+    padding: 20px 24px; border-bottom: 1px solid var(--border2);
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .nc-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .nc-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .nc-header-right { text-align: right; flex-shrink: 0; }
+  .nc-scores { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+  .nc-body {
+    padding: 20px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media (max-width: 600px) {
+    .nc-body { grid-template-columns: 1fr; }
+    .nc-header { flex-direction: column; }
+    .nc-header-right { text-align: left; }
+  }
+
+  .fact-block h4 {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+  }
+  .fact-item {
+    display: flex; gap: 10px; margin-bottom: 8px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .fi-icon { flex-shrink: 0; margin-top: 2px; font-size: 12px; }
+  .fi-icon.good { color: var(--color-proceed); }
+  .fi-icon.bad { color: var(--color-avoid); }
+  .fi-icon.warn { color: var(--color-caution); }
+  .fi-icon.info { color: var(--accent); }
+
+  .verdict-box {
+    grid-column: 1 / -1;
+    background: rgba(91,106,255,.06); border: 1px solid rgba(91,106,255,.18);
+    border-radius: 4px; padding: 16px 18px;
+  }
+  .vb-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .vb-text { font-size: 13px; line-height: 1.65; color: var(--text); }
+
+  /* ── PROTECTION SECTION ── */
+  .protect-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px; margin-top: 20px;
+  }
+  .protect-card {
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 4px; padding: 18px;
+  }
+  .protect-card h4 {
+    font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  .protect-card p { font-size: 13px; line-height: 1.6; }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--border2); margin: 40px 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border2);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .back-link {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+  }
+  .back-link:hover { color: var(--text); }
+
+  /* ── LEGEND ── */
+  .legend {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    background: var(--surface2); border: 1px solid var(--border2);
+    padding: 12px 16px; display: flex; flex-direction: column; gap: 6px;
+    border-radius: 4px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  @media (max-width: 480px) { .legend { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay">
+  <div class="login-title">Due Diligence Report</div>
+  <div class="login-sub">// social_proof_analysis.html</div>
+  <input type="password" class="login-input" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()">
+  <div class="login-error" id="loginError"></div>
+  <button class="login-btn" onclick="tryLogin()">UNLOCK REPORT</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+  <nav>
+    <a href="/" class="nav-back">← Back to main report</a>
+    <span class="nav-label">Social Proof Analysis</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div class="page-eyebrow">GoLuna / Hotshot — Vendor Due Diligence · April 2026</div>
+      <div class="page-title">Ad Network<br>Risk Assessment</div>
+      <div class="page-subtitle">Independent social proof research and scam analysis across 5 networks. Based on Trustpilot, AffPaying, Gartner, Scam Detector, Crunchbase, and direct advertiser complaints.</div>
+    </div>
+
+    <!-- SUMMARY STRIP -->
+    <div class="summary-strip">
+      <div class="summary-cell">
+        <div class="sc-name">RichAds</div>
+        <div class="sc-score medium">5.5</div>
+        <div class="sc-label">/ 10 risk</div>
+        <span class="verdict-pill caution">Caution</span>
+      </div>
+      <div class="summary-cell">
+        <div class="sc-name">ROIAds</div>
+        <div class="sc-score medium">5.5</div>
+        <div class="sc-label">/ 10 risk</div>
+        <span class="verdict-pill caution">Caution</span>
+      </div>
+      <div class="summary-cell">
+        <div class="sc-name">AADS</div>
+        <div class="sc-score low">3</div>
+        <div class="sc-label">/ 10 risk</div>
+        <span class="verdict-pill proceed">Proceed</span>
+      </div>
+      <div class="summary-cell">
+        <div class="sc-name">Blockchain-Ads</div>
+        <div class="sc-score medium">5</div>
+        <div class="sc-label">/ 10 risk</div>
+        <span class="verdict-pill caution">Caution</span>
+      </div>
+      <div class="summary-cell">
+        <div class="sc-name">HypeLab</div>
+        <div class="sc-score low">2.5</div>
+        <div class="sc-label">/ 10 risk</div>
+        <span class="verdict-pill proceed">Proceed</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- NETWORK CARDS -->
+    <div class="section-label">Network Detail</div>
+
+    <!-- RICHADS -->
+    <div class="network-card">
+      <div class="nc-header">
+        <div>
+          <div class="nc-name">RichAds</div>
+          <div class="nc-meta">richads.com · Founded 2018 · Cyprus · Self-serve + Managed</div>
+        </div>
+        <div class="nc-header-right">
+          <span class="verdict-pill caution">Caution — 5.5/10</span>
+          <div class="nc-scores">Trustpilot: 2.5/5 (83 reviews)<br>Scam Detector: 77.7/100 — Known. Standard. Fair.</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="fact-block">
+          <h4>✓ Verified Positives</h4>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>7+ years in market — well established in affiliate and iGaming circles</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Strong reviews on AffPaying and Affbank — specialist affiliate communities harder to fake than Trustpilot</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>iGaming vertical explicitly supported — push, pop, Telegram, Direct Click formats confirmed real</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Case study data shared (12 campaigns, eCPA by format and GEO) is granular enough to be credible</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Active presence at SiGMA events — physical conference presence reduces scam probability significantly</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>AM is chasing clients directly for SEA/LATAM data — effort you don't see from scam operations</span></div>
+        </div>
+        <div class="fact-block">
+          <h4>⚠ Red Flags</h4>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>Non-refundable unused balance policy confirmed in multiple independent complaints — real trap if campaigns underperform</span></div>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>Multiple Trustpilot reviews citing bot traffic and zero conversions — pattern consistent enough to take seriously</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Aggressive sales tactics reported: "invest more" pressure even when results are zero</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Positive reviews on their own blog are self-published — disregard entirely</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Cyprus-registered — harder jurisdiction to pursue disputes</span></div>
+        </div>
+        <div class="verdict-box">
+          <div class="vb-label">Verdict &amp; Protection Strategy</div>
+          <div class="vb-text">Legitimate company — not a scam — but documented traffic quality issues are real. Start with $150 minimum self-serve only. Set S2S tracking before spending a cent. If zero conversions fire in the first $150, walk away immediately. Never top up to the $10k VIP tier until results are validated at self-serve scale. Demand a publisher whitelist before scaling.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROIADS -->
+    <div class="network-card">
+      <div class="nc-header">
+        <div>
+          <div class="nc-name">ROIAds</div>
+          <div class="nc-meta">roiads.co · Newer network · Self-serve + Managed</div>
+        </div>
+        <div class="nc-header-right">
+          <span class="verdict-pill caution">Caution — 5.5/10</span>
+          <div class="nc-scores">Trustpilot: 6 reviews only (mixed)<br>Insufficient independent data</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="fact-block">
+          <h4>✓ Verified Positives</h4>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>FTD data they shared (Tier 1 $140–160, LATAM $45–60) is specific tracker-level detail — scam operations don't provide this</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Format clarity confirmed: push, pop, in-page push (iOS), Direct Click. No vague promises</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>iGaming explicitly listed as supported vertical on their site and in all communication</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Responsive communication throughout — real humans giving real answers to hard questions</span></div>
+        </div>
+        <div class="fact-block">
+          <h4>⚠ Red Flags</h4>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>Only 6 Trustpilot reviews — too small a sample to verify any track record. Newer networks carry inherently higher risk</span></div>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>One detailed verified complaint: $350 spent, 0 conversions, managed service promises broken, no refund</span></div>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>Another user reports click counts not matching tracker — potential traffic inflation</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>No named client case studies — all social proof is generic and unverifiable</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Non-refundable policy on spent budget — same financial trap as RichAds</span></div>
+        </div>
+        <div class="verdict-box">
+          <div class="vb-label">Verdict &amp; Protection Strategy</div>
+          <div class="vb-text">Not a confirmed scam but insufficiently proven. The FTD data they shared gives them benefit of the doubt — scammers don't usually go that deep. Minimum viable test: $1,500–2,000 with S2S tracking confirmed before launch. If clicks don't match your tracker within 48 hours, pause immediately. The LATAM pricing ($45–60 FTD) is compelling enough to justify a small test — but never rely on "managed service" promises without getting them in writing first.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AADS -->
+    <div class="network-card">
+      <div class="nc-header">
+        <div>
+          <div class="nc-name">AADS</div>
+          <div class="nc-meta">aads.com · Founded 2011 · Oldest crypto ad network · Self-serve</div>
+        </div>
+        <div class="nc-header-right">
+          <span class="verdict-pill proceed">Proceed — 3/10</span>
+          <div class="nc-scores">Trustpilot: 183 reviews (broadly positive)<br>14 years in market — oldest crypto ad network</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="fact-block">
+          <h4>✓ Verified Positives</h4>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Founded 2011 — oldest crypto ad network in existence, predates Bitcoin going mainstream</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>183 Trustpilot reviews with broadly positive trend — much larger credible sample than any other network here</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Publisher list is transparent and independently verifiable — poocoin.app, solscan.io, blockscout.com are real sites you can visit right now</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>No-cookie, no-JavaScript ad model — privacy-first approach is consistent and credible</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Slise acquisition by W3M Ventures (AADS parent group) in December 2024 is confirmed public news</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Coinbound (major independent crypto marketing agency) rates them positively in their 2025 review</span></div>
+        </div>
+        <div class="fact-block">
+          <h4>⚠ Red Flags</h4>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>One verified historical complaint about competitor ads showing first — removed after public pressure. Shows past questionable publisher practices</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Some publisher payment complaints — less relevant for you as an advertiser but indicates internal disputes</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Slise S2S tracking still in development — conversion tracking gap is a real operational risk for that channel specifically</span></div>
+          <div class="fact-item"><span class="fi-icon info">i</span><span>Budget split call still pending — do not commit budget before this call is done</span></div>
+        </div>
+        <div class="verdict-box">
+          <div class="vb-label">Verdict &amp; Protection Strategy</div>
+          <div class="vb-text">Lowest risk in this group alongside HypeLab. Fourteen years in market with a verifiable, visitable publisher list is the strongest trust signal available. Key protections: book the budget split call before committing, get channel allocation in writing, and get a confirmed ETA on Slise S2S tracking before allocating Slise-specific budget. Flying blind on conversions for that channel is the only meaningful risk here.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCKCHAIN-ADS -->
+    <div class="network-card">
+      <div class="nc-header">
+        <div>
+          <div class="nc-name">Blockchain-Ads</div>
+          <div class="nc-meta">blockchain-ads.com · Now part of Nexus · Singapore-registered · KYC required</div>
+        </div>
+        <div class="nc-header-right">
+          <span class="verdict-pill caution">Caution — 5/10</span>
+          <div class="nc-scores">Trustpilot: 24 reviews (mixed)<br>Gartner Peer Insights: present</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="fact-block">
+          <h4>✓ Verified Positives</h4>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Named clients — Coinbase, Binance, Crypto.com, OKX, Stake.com — are verifiable companies with real procurement processes. Essentially impossible to fake</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>DoubleVerify integration confirmed — third-party fraud verification is a strong, independent trust signal</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>KYC and compliance check before activation — friction that genuine scam operations don't add</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Casino-specific case studies: Fairspin (8x ROAS), Slots.lv ($54k FTDs / month), CasinoRewards ($19.35 CPA, 3,101 players in 30 days) — granular enough to be credible</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>One verified positive casino review: "genuine first-time depositors, not just inflated clicks" — directly relevant to your use case</span></div>
+        </div>
+        <div class="fact-block">
+          <h4>⚠ Red Flags</h4>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>One verified casino advertiser complaint: $10,000 spent, 1 lead. Their response confirmed no tracking was set up — meaning you can lose $10k easily if onboarding is botched</span></div>
+          <div class="fact-item"><span class="fi-icon bad">✗</span><span>Placement transparency is low — you cannot see which specific sites your ads appear on. Confirmed directly by that complaint</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Only 24 Trustpilot reviews — small for a network claiming Coinbase as a client</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Publisher payment disputes on record — pattern of not paying publishers is a yellow flag for operational trustworthiness</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Recommended starting budget $20–30k is significant exposure if tracking is misconfigured</span></div>
+        </div>
+        <div class="verdict-box">
+          <div class="vb-label">Verdict &amp; Protection Strategy</div>
+          <div class="vb-text">Not a scam — Coinbase and Binance as verified clients makes that effectively impossible. The real risk is operational: spend $20k with no tracking and get nothing measurable. Critical protections: demand a full pixel + S2S tracking walkthrough before going live; insist on a placement report after 48 hours of spend; if they cannot show where your ads appeared, pause immediately. Start at the $10k activation minimum only — do not jump to $20–30k until the first campaign validates.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HYPELAB -->
+    <div class="network-card">
+      <div class="nc-header">
+        <div>
+          <div class="nc-name">HypeLab</div>
+          <div class="nc-meta">hypelab.com · San Francisco · $4M seed funded · Y Combinator ecosystem</div>
+        </div>
+        <div class="nc-header-right">
+          <span class="verdict-pill proceed">Proceed — 2.5/10</span>
+          <div class="nc-scores">$4M — Shima Capital + Makers Fund<br>Brian Armstrong (Coinbase CEO) endorsement</div>
+        </div>
+      </div>
+      <div class="nc-body">
+        <div class="fact-block">
+          <h4>✓ Verified Positives</h4>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>$4M seed round from Shima Capital and Makers Fund — institutional VC backing from reputable crypto-native funds is the strongest possible trust signal for a younger company</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Brian Armstrong (Coinbase CEO) gave them a public shoutout at Coinbase Ventures Summit — independently verifiable public record</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Handled MetaMask Portfolio launch — MetaMask is a $1B+ product, they do not use unvetted ad vendors</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>CoW Protocol 4x CAC reduction — named client with a verifiable, published result</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Consensys Growth Marketing Lead quoted positively by name — not an anonymous review</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>No minimum budget — test with any amount before scaling</span></div>
+          <div class="fact-item"><span class="fi-icon good">✓</span><span>Walmart Store No.8 accelerator + Outlier Ventures — multiple credible institutional relationships</span></div>
+        </div>
+        <div class="fact-block">
+          <h4>⚠ Red Flags</h4>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>WARNING: hypeelab.com (double-e) is a confirmed scam shop with 1/100 trust score. Completely unrelated company — but verify you are always at hypelab.com before signing anything</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>No Trustpilot presence — fewer independent reviews compared to older networks</span></div>
+          <div class="fact-item"><span class="fi-icon warn">!</span><span>Seed stage company — less operational history than AADS or RichAds</span></div>
+          <div class="fact-item"><span class="fi-icon info">i</span><span>Casino-specific case studies not publicly available — ask for iGaming references on your first call</span></div>
+        </div>
+        <div class="verdict-box">
+          <div class="vb-label">Verdict &amp; Protection Strategy</div>
+          <div class="vb-text">Second lowest risk after AADS. VC backing from Shima Capital and a MetaMask client relationship are not fakeable. The main unknown is casino-specific performance — their published case studies are DeFi and protocol-focused. Before committing budget: ask for any iGaming or high-intent transactional campaign references. Start small (no minimum required). Pay by invoice or card — not a direct crypto wallet transfer. Always verify the URL: hypelab.com not hypeelab.com.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- PROTECTION PROTOCOLS -->
+    <div class="section-label">Universal Protection Protocols</div>
+    <div class="protect-grid">
+      <div class="protect-card">
+        <h4>01 · Tracking First</h4>
+        <p>Never spend a single dollar without S2S postback tracking confirmed and firing test events. Verify your tracker registers a test conversion before any campaign goes live. Non-negotiable across all 5 networks.</p>
+      </div>
+      <div class="protect-card">
+        <h4>02 · Start Small</h4>
+        <p>RichAds: $150 test. ROIAds: $1,500–2,000. AADS: small test per channel. BCA: $10k activation minimum only, no more until tracking confirmed. HypeLab: any amount — no minimum required.</p>
+      </div>
+      <div class="protect-card">
+        <h4>03 · Cross-Check Clicks</h4>
+        <p>Your tracker should show within 5–10% of the platform's reported clicks. If your tracker shows 100 clicks and they report 500, pause immediately and escalate. Significant discrepancy means inflated traffic.</p>
+      </div>
+      <div class="protect-card">
+        <h4>04 · Get Everything In Writing</h4>
+        <p>Any verbal promise about managed service, budget splits, KPIs, or performance guarantees must go in an email or contract before you pay. Verbal confirmation from an AM is not protection. We have been burned before.</p>
+      </div>
+      <div class="protect-card">
+        <h4>05 · Demand Placement Reports</h4>
+        <p>Within 48 hours of going live, request a placement report showing which sites your ads appeared on. BCA and RichAds are weakest on this. If they cannot provide it, pause spend and escalate to a senior contact immediately.</p>
+      </div>
+      <div class="protect-card">
+        <h4>06 · Non-Refundable = Risk Capital</h4>
+        <p>RichAds and ROIAds explicitly refuse to refund unused balances. Treat every dollar deposited as gone. Only deposit what you are genuinely prepared to lose on a test that may fail completely.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>GoLuna / Hotshot · Internal vendor evaluation · April 2026 · Confidential</span>
+      <a href="/" class="back-link">← Back to main report</a>
+    </footer>
+
+  </div><!-- /page-wrap -->
+</div><!-- /mainContent -->
+
+<!-- LEGEND -->
+<div class="legend" id="legend" style="display:none">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--color-proceed)"></div>Proceed — low risk</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--color-caution)"></div>Caution — medium risk</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--color-avoid)"></div>Risk — avoid</div>
+</div>
+
+<script>
+const PASS = 'Golunahotshotprivate11!';
+
+function tryLogin() {
+  const val = document.getElementById('passwordInput').value;
+  const inp = document.getElementById('passwordInput');
+  const err = document.getElementById('loginError');
+  if (val === PASS) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    document.getElementById('legend').style.display = 'flex';
+    sessionStorage.setItem('sp_auth', '1');
+  } else {
+    inp.classList.add('error');
+    err.textContent = 'Incorrect password. Try again.';
+    setTimeout(() => inp.classList.remove('error'), 400);
+    inp.value = '';
+    inp.focus();
+  }
+}
+
+// Auto-unlock if already authenticated in this session
+if (sessionStorage.getItem('sp_auth') === '1') {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  document.getElementById('legend').style.display = 'flex';
+}
+
+document.getElementById('passwordInput').focus();
+</script>
+</body>
+</html>
