@@ -255,6 +255,15 @@
   .budget-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--muted); }
   .budget-table td:first-child { color: var(--text); font-weight: 500; }
   .budget-table tr:last-child td { border-bottom: none; }
+  .claude-panel { background: var(--surface); border: 1px solid var(--border2); padding: 22px; }
+  .claude-note { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .claude-input { width: 100%; min-height: 120px; border: 1px solid var(--border2); background: var(--surface2); color: var(--text); font-family: inherit; font-size: 14px; line-height: 1.6; padding: 12px 14px; resize: vertical; outline: none; }
+  .claude-input:focus { border-color: var(--accent); }
+  .claude-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+  .claude-btn { background: var(--accent); color: #fff; border: none; padding: 10px 16px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.05em; cursor: pointer; }
+  .claude-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .claude-status { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--muted); }
+  .claude-response { margin-top: 12px; background: #0d0d14; border: 1px solid var(--border2); color: var(--text); padding: 14px; min-height: 88px; white-space: pre-wrap; font-size: 13px; line-height: 1.65; }
 
   footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--border); }
   .footer-note { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
@@ -302,6 +311,8 @@
     <li><a href="#fit">Product Fit</a></li>
     <li><a href="#budget">Budget</a></li>
     <li><a href="#responses">Responses</a></li>
+    <li><a href="#recommendation" style="color:var(--gold)">Recommendation</a></li>
+    <li><a href="#claude">Claude</a></li>
     <li><a href="/social-proof.html" style="color:var(--color-caution)">Risk Report ↗</a></li>
   </ul>
   <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -315,6 +326,8 @@
   <a href="#fit" onclick="toggleMenu()">Product Fit</a>
   <a href="#budget" onclick="toggleMenu()">Budget</a>
   <a href="#responses" onclick="toggleMenu()">Responses</a>
+  <a href="#recommendation" onclick="toggleMenu()">Recommendation</a>
+  <a href="#claude" onclick="toggleMenu()">Claude</a>
 </div>
 
 <div class="status-strip" id="statusStrip">
@@ -437,7 +450,7 @@
       <table>
         <thead><tr><th>GEO</th><th>Format</th><th>CPC/CPM</th><th>Daily Budget</th><th>eCPA</th><th>Conv.</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr class="highlight-row"><td>COL</td><td>Push</td><td>CPC $0.02</td><td>$40</td><td>$0.81</td><td>49</td><td>🏆 Best in full dataset</td></tr>
+          <tr class="highlight-row"><td>COL</td><td>Push</td><td>CPC $0.02</td><td>$40</td><td>$0.81*</td><td>49</td><td>🏆 Best in full dataset</td></tr>
           <tr><td>BRA</td><td>Direct Click</td><td>CPM $6</td><td>$50</td><td>$2.62*</td><td>125 (15 appr)</td><td>Low approval — real eCPA ~$21?</td></tr>
           <tr><td>BRA</td><td>Push</td><td>CPC $0.04</td><td>$30</td><td>$3.86*</td><td>50 (12 appr)</td><td>Low approval rate</td></tr>
           <tr><td>PER</td><td>Push</td><td>CPC $0.005</td><td>$30</td><td>$8.63</td><td>49</td><td>58.9M impressions</td></tr>
@@ -447,7 +460,7 @@
         </tbody>
       </table>
     </div>
-    <p class="data-note">* Clarify "Conversions (Approved)" with RichAds before scaling BRA or MMR.</p>
+    <p class="data-note">* All eCPA figures = registration cost (Main conversion). Deposit eCPA (Approved conversion) is tracked separately and will be higher. These are two different events, not quality rejections — confirmed by RichAds on 09/04/2026.</p>
   </div>
 
   <div class="data-section private-only" style="margin-top:32px">
@@ -456,7 +469,7 @@
       <table>
         <thead><tr><th>GEO</th><th>Format</th><th>CPC/CPM</th><th>Daily Budget</th><th>eCPA</th><th>Conv.</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr class="highlight-row"><td>VNM #2</td><td>Push</td><td>CPC $0.03</td><td>$100</td><td>$2.95</td><td>50</td><td>🏆 Best SEA. 48.9M impr, 4.54K clicks</td></tr>
+          <tr class="highlight-row"><td>VNM #2</td><td>Push</td><td>CPC $0.03</td><td>$100</td><td>$2.95*</td><td>50</td><td>🏆 Best SEA. 48.9M impr, 4.54K clicks</td></tr>
           <tr><td>MMR</td><td>Push</td><td>CPC $0.075</td><td>$100</td><td>$6.95</td><td>26 (5 appr)</td><td>19% approval only — real eCPA ~$36?</td></tr>
           <tr><td>PHL</td><td>Push</td><td>CPC $0.03</td><td>$50</td><td>$7.98</td><td>44</td><td>Active, no approval filter</td></tr>
           <tr><td>VNM #1</td><td>Push</td><td>CPC $0.03</td><td>$100</td><td>$8.02</td><td>24</td><td>100% CTR, 6.41K impr — low volume</td></tr>
@@ -527,7 +540,7 @@
   <div class="qa-grid reveal">
     <div class="qa-card answered">
       <div class="qa-agency"><span class="private-content">HypeLab</span><span class="guest-content">Network E</span></div>
-      <div class="qa-status"><span class="private-content">Fully answered — call completed with Zach Reuveni · All materials received</span><span class="guest-content">Responded — Call completed</span></div>
+      <div class="qa-status"><span class="private-content">Fully answered — all follow-up questions answered by Zach Reuveni</span><span class="guest-content">Responded — All questions answered</span></div>
       <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q">Market reach and traffic scale?</div>
       <div class="qa-a private-content">60%+ of all known crypto web traffic. Inclusive of CoinGecko, CoinMarketCap, Etherscan properties (Basescan, BSCscan, Solscan, FTMscan, PolygonScan), The Defiant, Unchained Crypto, BeInCrypto, Quickswap, Chainlist, Dextools, GeckoTerminal, Blockscout, Tokenmetrics, and 100+ more.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Scale data available in full report.</div>
@@ -549,23 +562,27 @@
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Case studies in full report.</div>
       </div></div>
       <div class="qa-item"><div class="qa-num">Q6</div><div><div class="qa-q">iGaming / casino case studies?</div>
-      <div class="qa-a pending">No casino-specific case studies provided yet. Ask on first call. All current cases are DeFi, protocol, and wallet clients — highly likely to convert but unconfirmed for crypto casino vertical specifically.</div>
+      <div class="qa-a pending">No written casino case studies provided. BC Game, Rain, MetaWin confirmed on call as past clients.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q7</div><div><div class="qa-q">Confirmed casino clients on the network?</div>
-      <div class="qa-a private-content">BC Game, Rain, and MetaWin confirmed as past casino clients on the call. HypeLab uses data from these campaigns to replicate successful targeting and placements for new casino operators. This is the strongest validation yet — all three are active crypto casino brands.</div>
-      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Confirmed casino client list in full report.</div>
+      <div class="qa-item"><div class="qa-num">Q7</div><div><div class="qa-q">FTD cost from BC Game / Rain / MetaWin campaigns?</div>
+      <div class="qa-a private-content">Answered: starts around $50–60 and comes down as campaigns optimise, but could be higher or lower depending on the product. No fixed guarantee — Zach was explicit that conversion ultimately depends on product-market fit. If the product doesn't resonate, users won't convert regardless of traffic quality.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">FTD cost data in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q8</div><div><div class="qa-q">Hotshot PvP angle — HypeLab response?</div>
-      <div class="qa-a private-content">Zach acknowledged the patented PvP tournament structure as genuinely novel. HypeLab expressed specific interest in testing the PvP game landing page as a separate acquisition funnel — targeting wallet-connected gaming/gambling users who are not typical casino players. This could be a differentiated creative angle no other network has tested.</div>
+      <div class="qa-item"><div class="qa-num">Q8</div><div><div class="qa-q">Wallet targeting available in COL, VNM, BRA, PHL?</div>
+      <div class="qa-a private-content">Yes — available in all four GEOs. However Zach recommends NOT using wallet targeting exclusively in these markets. It narrows the audience too much, causes underspend, and drives costs up. Better approach: run broad crypto targeting in those GEOs — wallet holders will be in the mix with other crypto users. Start broad, layer wallet targeting in once volume is established.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Targeting details in full report.</div>
+      </div></div>
+      <div class="qa-item"><div class="qa-num">Q9</div><div><div class="qa-q">Refund policy?</div>
+      <div class="qa-a private-content" style="color:var(--color-avoid)">Zero refunds — no exceptions. Budget is pre-allocated to publishing sites on deposit, so they are already committed regardless of campaign performance. Zach explicitly stated: ads carry risk regardless of provider. If the product doesn't have market fit, users won't convert — and that's not a refundable outcome.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Policy details in full report.</div>
+      </div></div>
+      <div class="qa-item"><div class="qa-num">Q10</div><div><div class="qa-q">Hotshot PvP angle — HypeLab response?</div>
+      <div class="qa-a private-content">Zach acknowledged the PvP tournament structure as genuinely novel and expressed specific interest in testing it. HypeLab can target wallet-connected gaming/gambling users — a different segment from typical casino players. Good differentiated creative angle to test.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q9</div><div><div class="qa-q">Agreed next steps from the call?</div>
-      <div class="qa-a private-content">1. Zach to send: case studies (done ✓), publisher list (done ✓), ad specs (done ✓), meeting transcript. 2. GoLuna/Hotshot to: register on hypelab.com platform, build platform comparison spreadsheet (coverage + overlaps), create Telegram group with all parties. 3. Launch timing: 4–5 week onboarding, then all paid campaigns go live simultaneously with TikTok and Meta. NOTE: Transcript says "hyperab.com" — transcription error. Correct URL is hypelab.com.</div>
-      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Next steps in full report.</div>
-      </div></div>
-      <div class="callout proceed" style="margin-top:16px"><div class="callout-title">Status: Upgraded to #1 GoLuna pick</div>
-      <div class="callout-text private-content">60% crypto web traffic at CPM $2 with no minimum budget is the most efficient entry point in this evaluation. Publisher list is independently verifiable and premium — CoinGecko alone has more traffic than all AADS publishers combined. Only open question is casino-specific performance. Test immediately. Next step: send GEO targets + creatives + attribution link to launch.</div>
-      <div class="callout-text guest-content">Status upgraded based on confirmed data. Details in full report.</div>
+      <div class="callout proceed" style="margin-top:16px"><div class="callout-title">All questions answered — ready to launch</div>
+      <div class="callout-text private-content">FTD cost starts $50–60 and optimises down. No refunds — treat every dollar as risk capital. Wallet targeting available in all priority GEOs but run broad first. Zero refund policy is the harshest in this group but the traffic quality argument is strong. Next step: send GEO targets + creatives + attribution link to Zach to go live.</div>
+      <div class="callout-text guest-content">All questions answered. Details in full report.</div>
       </div>
     </div>
 
@@ -584,19 +601,31 @@
       <div class="qa-a private-content">$150 min self-serve (~1 day). VIP managed plan unlocks automatically at $10k top-up — full management included. Non-refundable.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
       </div></div>
-      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">LATAM + SEA eCPA benchmarks?</div>
-      <div class="qa-a private-content">Full data received. LATAM: COL Push $0.81 (best), BRA Direct Click $2.62* (approval rate unclear), PER $8.63, CHL $9.15, MEX $19.84, ARG $24.34. SEA: VNM Push $2.95 (standout), PHL $7.98, THA $10.77, MYS $12.38, IDN $13.85. *Clarify BRA + MMR conversion approval rates before scaling.</div>
+      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">LATAM + SEA eCPA benchmarks + conversion tracking clarification?</div>
+      <div class="qa-a private-content">Full data received. LATAM: COL Push $0.81 (best), BRA Direct Click $2.62, PER $8.63, CHL $9.15, MEX $19.84, ARG $24.34. SEA: VNM Push $2.95 (standout), PHL $7.98, THA $10.77, MYS $12.38, IDN $13.85. IMPORTANT — "Conversions (Approved)" clarified by Ana: Main conversion = registration, Approved conversion = deposit. These are two separate tracked events, not quality rejections. The $2.62 BRA eCPA is cost per registration — deposit eCPA is a separate and higher figure not yet shared.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Data in full report.</div>
       </div></div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q">Can you share a placement report / zone IDs before launch?</div>
+      <div class="qa-a private-content" style="color:var(--color-avoid)">Not possible before launch. Zone/source IDs only appear in the cabinet after campaigns start running. You will be able to see and adjust sources post-launch — but you go in blind on day one.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
+      </div></div>
+      <div class="qa-item"><div class="qa-num">Q6</div><div><div class="qa-q">Deposit eCPA by GEO?</div>
+      <div class="qa-a private-content">Varies by GEO, format, and product — Ana refers back to the media plan and campaign screenshots already shared. No fixed benchmark provided. The $0.81 COL and $2.95 VNM figures in the media plan are registration eCPAs. Deposit eCPA will be higher — exact figure only known once campaigns run.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
+      </div></div>
+      <div class="callout info" style="margin-top:16px"><div class="callout-title">BRA data reframed — not a quality issue</div>
+      <div class="callout-text private-content">The BRA "low approval rate" concern was based on a misread. Main conversion = registration, Approved conversion = deposit. Two separate events. The eCPAs in the media plan are registration costs, not deposit costs. This is actually positive — it means the traffic was not being rejected for quality, just tracked differently. Deposit eCPA is the next number to get.</div>
+      <div class="callout-text guest-content">Conversion tracking clarified. Details in full report.</div>
+      </div>
       <div class="callout proceed" style="margin-top:16px"><div class="callout-title">Start COL or VNM Push first</div>
-      <div class="callout-text private-content">$150 gets you 1 day of data on COL ($0.81 eCPA, CPC $0.02) or VNM ($2.95 eCPA, CPC $0.03). These are the two clearest entry points in the entire dataset. Clarify BRA + MMR approval rates before scaling.</div>
-      <div class="callout-text guest-content">Entry point data confirmed. Details in full report.</div>
+      <div class="callout-text private-content">$150 gets you 1 day of data on COL (CPC $0.02) or VNM (CPC $0.03). You go in blind on placements day one — that's now confirmed and expected. Build your whitelist from the zone IDs after the first campaign runs.</div>
+      <div class="callout-text guest-content">Entry point confirmed. Details in full report.</div>
       </div>
     </div>
 
     <div class="qa-card answered">
       <div class="qa-agency"><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></div>
-      <div class="qa-status"><span class="private-content">Fully answered — LATAM FTD data confirmed</span><span class="guest-content">Responded — Under evaluation</span></div>
+      <div class="qa-status"><span class="private-content">Fully answered — follow-up questions responded</span><span class="guest-content">Responded — Under evaluation</span></div>
       <div class="qa-item"><div class="qa-num">Q1</div><div><div class="qa-q">Pricing + min budget?</div>
       <div class="qa-a private-content">Min CPC: $0.003. Recommended: ~$0.15–0.17 push, ~$2 pop. Test budget: $1,500–2,000. No trial period. Non-refundable.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
@@ -609,6 +638,22 @@
       <div class="qa-a private-content">Yes — iGaming is their key vertical. Only restrictions: drugs, weapons, pharmacy. Casino and crypto 100% allowed.</div>
       <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
       </div></div>
+      <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">What is included in full managed service?</div>
+      <div class="qa-a private-content">Confirmed — everything described is included. Dedicated AM, full campaign management, reporting, and optimization all part of the managed service offering.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
+      </div></div>
+      <div class="qa-item"><div class="qa-num">Q5</div><div><div class="qa-q">Named casino clients?</div>
+      <div class="qa-a private-content">Confirmed casino clients: BC Game (affiliates), 1xPartners, Up X Team, Melbet, Betpawa. All active iGaming operators. Note: still need specific FTD cost figures from any of these campaigns — that number has not been shared yet.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Client list in full report.</div>
+      </div></div>
+      <div class="qa-item"><div class="qa-num">Q6</div><div><div class="qa-q">Refund policy if campaign produces zero conversions?</div>
+      <div class="qa-a private-content">Conditional refund policy. They submit a request to their anti-fraud department — if the problem originated on their side (e.g. bot traffic), a refund is possible. Their rep states this situation has never occurred in his personal experience. Treat as non-refundable in practice unless you can document the problem is on their side.</div>
+      <div class="qa-a guest-content" style="color:var(--muted);font-style:italic">Details in full report.</div>
+      </div></div>
+      <div class="callout caution" style="margin-top:16px"><div class="callout-title">Still missing — FTD cost data</div>
+      <div class="callout-text private-content">BC Game, 1xPartners, Up X Team, Melbet, Betpawa all confirmed as clients. But no specific eCPA or FTD cost figures shared from any of these campaigns. This is the key number needed to compare ROIAds against HypeLab's $45–60 LATAM FTD claim. Follow up and request it.</div>
+      <div class="callout-text guest-content">Additional performance data pending. Details in full report.</div>
+      </div>
     </div>
 
     <div class="qa-card answered">
@@ -649,8 +694,12 @@
       <div class="qa-item"><div class="qa-num">Q4</div><div><div class="qa-q">Managed service scope?</div>
       <div class="qa-a pending">Open question: does managed service include ongoing optimization or just creative production? Confirm AM assignment at $10k. Get in writing before paying.</div>
       </div></div>
-      <div class="callout caution" style="margin-top:16px"><div class="callout-title">Tracking first — critical</div>
-      <div class="callout-text private-content">Set up pixel + S2S BEFORE any spend. Request placement report after 48h. One verified complaint: $10k spent, 1 lead, because tracking was not set up. Do not repeat.</div>
+      <div class="callout proceed" style="margin-top:16px"><div class="callout-title">Managed service + creatives confirmed in writing</div>
+      <div class="callout-text private-content">Dedicated AM for setup and optimisation confirmed. Design team for creatives confirmed. Both included at $10k activation. Still waiting on FTD cost data from comparable casino campaigns — do not activate until that number arrives. Also review the refund policy at hub.blockchain-ads.com/support?section=refund-policy before committing.</div>
+      <div class="callout-text guest-content">Managed service scope confirmed. FTD cost data pending. Details in full report.</div>
+      </div>
+      <div class="callout caution" style="margin-top:12px"><div class="callout-title">Tracking first — still critical</div>
+      <div class="callout-text private-content">Set up pixel + S2S BEFORE any spend. Request placement report after 48h. One verified complaint: $10k spent, 1 lead, because tracking was not set up. Do not repeat this.</div>
       <div class="callout-text guest-content">Tracking setup non-negotiable before any launch. Details in full report.</div>
       </div>
     </div>
@@ -665,10 +714,10 @@
     <div class="verdict-card proceed">
       <div class="verdict-label">Proceed — all 5 networks</div>
       <div class="verdict-item"><strong><span class="private-content">HypeLab</span><span class="guest-content">Network E</span></strong> — 60% crypto traffic, CPM $2, no minimum. Casino clients: BC Game, Rain, MetaWin. Send GEO targets + creatives + attribution link. Register on hypelab.com. #1 GoLuna pick.</div>
-      <div class="verdict-item"><strong><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></strong> — CPA $6.40–$11.40. Casino must be live first. $10k activation, $20–30k recommended. Tracking setup non-negotiable.</div>
+      <div class="verdict-item"><strong><span class="private-content">Blockchain-Ads</span><span class="guest-content">Network D</span></strong> — Managed service + creatives confirmed in writing. CPA $6.40–$11.40. Casino must be live first. $10k activation. FTD cost data pending — do not activate until received. Review refund policy before committing.</div>
       <div class="verdict-item"><strong><span class="private-content">AADS</span><span class="guest-content">Network C</span></strong> — Book budget split call. KOL channel is #1 for Hotshot. Get Slise S2S ETA in writing.</div>
       <div class="verdict-item"><strong><span class="private-content">RichAds</span><span class="guest-content">Network A</span></strong> — Start $150 self-serve. COL Push ($0.81) or VNM Push ($2.95). Clarify BRA/MMR approval rates.</div>
-      <div class="verdict-item"><strong><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></strong> — $1,500 LATAM FTD test. Get managed service promises in writing first.</div>
+      <div class="verdict-item"><strong><span class="private-content">ROIAds</span><span class="guest-content">Network B</span></strong> — $1,500 LATAM FTD test. Managed service confirmed in full. Casino clients: BC Game, 1xPartners, Melbet, Betpawa. Still need FTD cost figures from those campaigns before scaling.</div>
     </div>
     <div class="verdict-card caution">
       <div class="verdict-label">Watch closely</div>
@@ -683,6 +732,149 @@
   </div>
 </section>
 
+
+<!-- ── RECOMMENDATION ── -->
+<section id="recommendation">
+  <div class="section-eyebrow">Final budget allocation · April 2026</div>
+  <h2 class="section-title">Our Recommendation</h2>
+
+  <!-- Budget reality check -->
+  <div class="callout info reveal"><div class="callout-title">Budget: $33,000/month across 2–3 agencies</div>
+  <div class="callout-text private-content">At $33k/month, one network is immediately ruled out at this stage and two others carry too much overlap to run simultaneously. The recommended combination is AADS + HypeLab + RichAds. This covers crypto-native display, the largest web3 publisher network, and unique push/Telegram inventory — with zero format overlap between the three.</div>
+  <div class="callout-text guest-content">Budget and network selection analysis available in full report.</div>
+  </div>
+
+  <!-- The three picks -->
+  <div class="agency-grid reveal" style="margin-bottom:2px">
+
+    <div class="agency-card aads" style="border-top:3px solid var(--gold)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="agency-name"><span class="private-content">AADS</span><span class="guest-content">Network C</span></div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.1em">CONFIRMED</span>
+      </div>
+      <div class="agency-type">Creative support + crypto-native display + KOL</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--gold);margin:12px 0 4px">
+        <span class="private-content">$11k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
+        <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
+      </div>
+      <p class="agency-desc"><span class="private-content">The foundation layer. AADS will help set up creatives and onboarding — work that benefits every other network in the stack. Crypto-native audience (wallet holders, DeFi users) is the exact GoLuna target customer. KOL/streamer channel is the single best Hotshot acquisition tool in this group. Slise in-dApp placements add premium wallet-connected inventory. Confirm budget split across AADS display, Slise, and KOL at tomorrow's call.</span><span class="guest-content">Foundation layer. Creative and onboarding support, crypto-native display, KOL/streamer channel for Product B, and premium in-dApp placements.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Creative support</span><span class="tag">KOL / Streamers</span><span class="tag">Slise in-dApp</span><span class="tag">600+ publishers</span></span><span class="guest-content"><span class="tag">Creative support</span><span class="tag">Influencer</span><span class="tag">In-dApp</span></span></div>
+    </div>
+
+    <div class="agency-card hypelab" style="border-top:3px solid #a78bfa">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="agency-name"><span class="private-content">HypeLab</span><span class="guest-content">Network E</span></div>
+        <span style="font-family:var(--mono);font-size:10px;color:#a78bfa;letter-spacing:0.1em">RECOMMENDED #1</span>
+      </div>
+      <div class="agency-type">60% crypto web traffic · CPM $2 · AI-optimized</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:#a78bfa;margin:12px 0 4px">
+        <span class="private-content">$14k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
+        <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
+      </div>
+      <p class="agency-desc"><span class="private-content">The strongest pure performance pick at this budget. $14k at CPM $2 delivers ~7 million impressions/month on CoinGecko, Etherscan, CoinMarketCap, Chainlist, and Dextools — the exact sites your target audience visits daily. FTD cost starts $50–60 and comes down with optimisation. Casino clients: BC Game, Rain, MetaWin. No activation fee, no minimum — every dollar goes to media. Run broad crypto targeting in COL, VNM, BRA, PHL first (not wallet-only). Zero refund policy — treat as risk capital.</span><span class="guest-content">Largest web3 publisher network. Premium crypto publisher inventory. AI-optimized. Confirmed casino operator clients. No minimum budget or activation fee.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">CoinGecko</span><span class="tag">Etherscan</span><span class="tag">CoinMarketCap</span><span class="tag">~7M impr/mo at $14k</span></span><span class="guest-content"><span class="tag">Premium publishers</span><span class="tag">AI-optimized</span><span class="tag">High volume</span></span></div>
+    </div>
+
+    <div class="agency-card richads" style="border-top:3px solid var(--accent)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div class="agency-name"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.1em">RECOMMENDED #2</span>
+      </div>
+      <div class="agency-type">Push + Telegram · COL $0.81 · VNM $2.95 eCPA</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--accent);margin:12px 0 4px">
+        <span class="private-content">$8k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
+        <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
+      </div>
+      <p class="agency-desc"><span class="private-content">Fills the gap AADS and HypeLab don't cover: push notifications and Telegram. COL Push at $0.81 registration eCPA and VNM Push at $2.95 are the two cheapest acquisition entry points in the entire dataset. Telegram mini-app inventory is a crypto casino channel no other network here offers. Start $150 self-serve to validate COL or VNM first — go in blind on placements day one and build whitelist from zone IDs post-launch. Non-refundable balance — deposit only what you can lose on a test.</span><span class="guest-content">Push and Telegram inventory not available on other selected networks. Lowest registration eCPA in the dataset across key LATAM and SEA GEOs.</span></p>
+      <div class="agency-tags"><span class="private-content"><span class="tag">Push</span><span class="tag">Telegram</span><span class="tag">COL / VNM entry</span><span class="tag">$0.81 eCPA COL</span></span><span class="guest-content"><span class="tag">Push</span><span class="tag">Telegram</span><span class="tag">LATAM / SEA</span></span></div>
+    </div>
+
+  </div>
+
+  <!-- Budget breakdown table -->
+  <div class="table-outer reveal" style="margin-top:2px;margin-bottom:24px">
+    <table>
+      <thead><tr><th>Network</th><th>Monthly Budget</th><th>Share</th><th>Primary Role</th><th>Key GEOs</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#a78bfa;font-weight:700"><span class="private-content">HypeLab</span><span class="guest-content">Network E</span></td>
+          <td><span class="private-content">$14,000</span><span class="guest-content">—</span></td>
+          <td><span class="private-content">42%</span><span class="guest-content">—</span></td>
+          <td>Performance · GoLuna primary</td>
+          <td><span class="private-content">COL, VNM, BRA, PHL (broad crypto)</span><span class="guest-content">—</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold);font-weight:700"><span class="private-content">AADS</span><span class="guest-content">Network C</span></td>
+          <td><span class="private-content">$11,000</span><span class="guest-content">—</span></td>
+          <td><span class="private-content">33%</span><span class="guest-content">—</span></td>
+          <td>Foundation · GoLuna + Hotshot</td>
+          <td><span class="private-content">Global crypto + KOL by creator</span><span class="guest-content">—</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);font-weight:700"><span class="private-content">RichAds</span><span class="guest-content">Network A</span></td>
+          <td><span class="private-content">$8,000</span><span class="guest-content">—</span></td>
+          <td><span class="private-content">24%</span><span class="guest-content">—</span></td>
+          <td>Push + Telegram · GoLuna LATAM/SEA</td>
+          <td><span class="private-content">COL, VNM first — then PHL, THA</span><span class="guest-content">—</span></td>
+        </tr>
+        <tr style="border-top:1px solid var(--border2)">
+          <td style="color:var(--text);font-weight:700">Total</td>
+          <td><span class="private-content" style="color:var(--text);font-weight:700">$33,000</span><span class="guest-content">—</span></td>
+          <td style="color:var(--text);font-weight:700">100%</td>
+          <td colspan="2" style="color:var(--muted);font-size:12px">Zero format overlap between the three networks</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Why not the others -->
+  <div class="callout caution reveal"><div class="callout-title">ROIAds — not in this round, revisit month 2</div>
+  <div class="callout-text private-content">ROIAds is not a bad network — casino clients confirmed (BC Game, 1xPartners, Melbet, Betpawa) and LATAM FTD data ($45–60) is compelling. The problem is format overlap: push and pop is exactly what RichAds already covers. Running both on the same GEOs at $33k is duplication we can't afford. If RichAds underperforms on COL or VNM after the first test, swap it out for ROIAds and run a direct comparison. That's a month-two decision.</div>
+  <div class="callout-text guest-content">One network excluded due to format overlap with a selected network. Revisit in month two based on performance data.</div>
+  </div>
+
+  <div class="callout avoid reveal"><div class="callout-title">Blockchain-Ads — not now, try when budget grows</div>
+  <div class="callout-text private-content">Blockchain-Ads has the strongest iGaming case study portfolio in this evaluation — Stake, Roobet, DafaBet, BetPanda, Fairspin, CasinoRewards. Dedicated AM + creative design team now confirmed in writing as part of managed service at $10k activation. FTD tracking and wallet targeting are best-in-class. The budget problem remains: they recommend $20–30k to reach the optimisation phase, which is most of the $33k total leaving nothing for AADS or HypeLab. When monthly budget reaches $60–80k, Blockchain-Ads becomes a strong addition. Put it on the roadmap for Q3 — and once FTD cost data arrives from their Stake/Roobet campaigns, it will make the case even clearer.</div>
+  <div class="callout-text guest-content">One network excluded due to minimum budget requirements relative to current total. Strong candidate when overall budget increases — recommended for a future phase.</div>
+  </div>
+
+  <!-- Launch sequence -->
+  <div class="section-eyebrow" style="margin-top:40px">Launch sequence</div>
+  <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em;margin-bottom:20px">How to roll this out</h3>
+  <div class="specs-grid reveal">
+    <div class="spec-cell">
+      <div class="spec-label">Week 1</div>
+      <div class="spec-value"><span class="private-content">AADS onboarding call — confirm budget split across display, Slise, KOL. HypeLab — send GEO targets + attribution link + creatives to Zach. RichAds — $150 self-serve test on COL Push (CPC $0.02).</span><span class="guest-content">Network onboarding begins. Smallest budget tests activated on lowest-risk entry points.</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Week 2–3</div>
+      <div class="spec-value"><span class="private-content">Review RichAds COL data. If zone IDs are clean, scale to VNM. HypeLab campaigns live — monitor CTR and registration rate daily. AADS display goes live — KOL briefing underway (allow 3–4 weeks for creator activation).</span><span class="guest-content">Campaign data starts flowing. Underperforming GEOs paused, budget shifted to validated ones.</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Week 4</div>
+      <div class="spec-value"><span class="private-content">First full performance review across all three. Compare registration eCPA vs deposit eCPA per network. Shift budget toward top performer. If RichAds underperforms — pause and redirect to ROIAds test at $1,500.</span><span class="guest-content">First full performance review. Budget rebalanced based on results. Underperforming network replaced if needed.</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Month 2+</div>
+      <div class="spec-value"><span class="private-content">Scale winning GEOs. Add ROIAds if RichAds push/pop underperformed. Add Blockchain-Ads to the roadmap once budget reaches $60–80k/month. HypeLab Preferred Partners ($100k/qtr) becomes relevant when monthly spend crosses $33k per network.</span><span class="guest-content">Scale proven channels. Add excluded networks as budget grows. Phase two planning begins.</span></div>
+    </div>
+  </div>
+
+</section>
+
+<section id="claude">
+  <div class="section-eyebrow">AI assistant</div>
+  <h2 class="section-title">Ask Claude</h2>
+  <div class="claude-panel reveal">
+    <p class="claude-note">Connected through your Vercel function at <code>/api/claude</code>. Press Ctrl+Enter to send.</p>
+    <textarea id="claudePrompt" class="claude-input" placeholder="Ask Claude anything about this report or your campaign plan..."></textarea>
+    <div class="claude-actions">
+      <button id="claudeSendBtn" class="claude-btn" type="button">Ask Claude</button>
+      <span id="claudeStatus" class="claude-status">Ready</span>
+    </div>
+    <div id="claudeResponse" class="claude-response">Claude response will appear here.</div>
+  </div>
+</section>
 <footer>
   <div class="footer-note">Confidential — Internal Use Only</div>
   <div class="footer-note"><span class="private-content">iGaming Ad Network Evaluation — April 2026</span><span class="guest-content">Vendor Evaluation Report — 2026</span></div>
@@ -713,10 +905,10 @@ function enterPrivate() {
   document.getElementById('modeLabel').textContent = 'Private Mode — Full report';
   document.getElementById('statusStrip').innerHTML = `
     <span class="strip-label">Live Vendor Status</span>
-    <span class="status-badge answered"><span class="dot"></span>RichAds — Answered (SEA/LATAM data received)</span>
-    <span class="status-badge answered"><span class="dot"></span>ROIAds — Answered</span>
+    <span class="status-badge answered"><span class="dot"></span>RichAds — Answered (all follow-up questions answered)</span>
+    <span class="status-badge answered"><span class="dot"></span>ROIAds — Answered (follow-up responded)</span>
     <span class="status-badge answered"><span class="dot"></span>AADS — Answered (call pending)</span>
-    <span class="status-badge answered"><span class="dot"></span>Blockchain-Ads — Answered</span>
+    <span class="status-badge answered"><span class="dot"></span>Blockchain-Ads — Answered (follow-up responded · FTD cost pending)</span>
     <span class="status-badge answered"><span class="dot"></span>HypeLab — Answered (call completed · Zach Reuveni)</span>
   `;
 }
@@ -742,6 +934,59 @@ function showLoginFromBadge() {
 
 function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
+async function askClaude() {
+  const promptEl = document.getElementById('claudePrompt');
+  const responseEl = document.getElementById('claudeResponse');
+  const statusEl = document.getElementById('claudeStatus');
+  const sendBtn = document.getElementById('claudeSendBtn');
+  const prompt = (promptEl?.value || '').trim();
+
+  if (!prompt) {
+    statusEl.textContent = 'Enter a prompt first.';
+    promptEl.focus();
+    return;
+  }
+
+  sendBtn.disabled = true;
+  statusEl.textContent = 'Thinking...';
+  responseEl.textContent = '';
+
+  try {
+    const res = await fetch('/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data.error || `Request failed with status ${res.status}.`);
+    }
+
+    responseEl.textContent = data.text || 'No response text returned.';
+    statusEl.textContent = `Done (${data.model || 'Claude'})`;
+  } catch (err) {
+    statusEl.textContent = err?.message || 'Request failed.';
+    responseEl.textContent = 'Unable to get a Claude response right now.';
+  } finally {
+    sendBtn.disabled = false;
+  }
+}
+
+const claudeSendBtn = document.getElementById('claudeSendBtn');
+if (claudeSendBtn) {
+  claudeSendBtn.addEventListener('click', askClaude);
+}
+
+const claudePromptEl = document.getElementById('claudePrompt');
+if (claudePromptEl) {
+  claudePromptEl.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      askClaude();
+    }
+  });
+}
 const sliderIds = ['hlSlider','bcSlider','aadsSlider','raSlider','roiSlider'];
 const pctIds    = ['hlPct','bcPct','aadsPct','raPct','roiPct'];
 const amountIds = ['hlAmount','bcAmount','aadsAmount','raAmount','roiAmount'];
