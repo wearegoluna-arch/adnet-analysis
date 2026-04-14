@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vendor Evaluation Report</title>
 <meta name="description" content="Confidential vendor evaluation report. Internal use only.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg: #0a0a0f; --surface: #111118; --surface2: #18181f;
@@ -17,17 +16,17 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.7; font-size: 15px; }
+  body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.7; font-size: 15px; }
 
   #loginOverlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; }
   .login-box { background: var(--surface); border: 1px solid var(--border2); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
-  .login-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
-  .login-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
+  .login-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+  .login-title { font-family: Arial, sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
   .login-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
   .login-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 12px 16px; font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
   .login-input:focus { border-color: var(--accent); }
   .login-input.error { border-color: var(--color-avoid); }
-  .login-btn { width: 100%; background: var(--accent); color: white; border: none; padding: 13px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s; margin-bottom: 16px; }
+  .login-btn { width: 100%; background: var(--accent); color: white; border: none; padding: 13px; font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s; margin-bottom: 16px; }
   .login-btn:hover { opacity: 0.85; }
   .login-guest { font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; font-family: var(--mono); letter-spacing: 0.05em; }
   .login-guest:hover { color: var(--text); }
@@ -54,7 +53,7 @@
   @media (max-width: 768px) { .legend { display: none; } }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .nav-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
   .nav-links { display: flex; gap: 2px; list-style: none; }
   .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 4px; transition: all 0.2s; font-family: var(--mono); }
   .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--border2); }
@@ -79,18 +78,18 @@
   .guest-banner { background: #ff475710; border: 1px solid #ff475730; padding: 10px max(40px, calc((100% - 1200px) / 2 + 40px)); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .guest-banner-text { font-size: 13px; color: var(--muted); }
   .guest-banner-text strong { color: var(--color-avoid); }
-  .guest-banner-btn { background: var(--accent); color: white; border: none; padding: 8px 18px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; cursor: pointer; letter-spacing: 0.05em; white-space: nowrap; }
+  .guest-banner-btn { background: var(--accent); color: white; border: none; padding: 8px 18px; font-family: Arial, sans-serif; font-weight: 700; font-size: 12px; cursor: pointer; letter-spacing: 0.05em; white-space: nowrap; }
   body.private-mode .guest-banner { display: none; }
   @media (max-width: 600px) { .guest-banner { padding: 12px 16px; } }
 
   .hero { padding: 56px 40px 48px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
   .hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 68px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .hero h1 { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 68px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
   .hero-purpose { font-size: 16px; color: var(--muted); margin-bottom: 36px; max-width: 560px; }
   .hero-purpose strong { color: var(--text); font-weight: 500; }
   .hero-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; background: var(--border); max-width: 800px; }
   .summary-stat { background: var(--surface); padding: 20px 24px; }
-  .summary-stat .num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .summary-stat .num { font-family: Arial, sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
   .summary-stat .num.green { color: var(--color-proceed); }
   .summary-stat .num.gold { color: var(--gold); }
   .summary-stat .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
@@ -98,7 +97,7 @@
 
   section { padding: 60px 40px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
   .section-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 36px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 36px; }
+  .section-title { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 36px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 36px; }
   @media (max-width: 600px) { section { padding: 36px 16px; } }
 
   .agency-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 2px; background: var(--border); }
@@ -111,7 +110,7 @@
   .agency-card.aads::before { background: #f5c842; }
   .agency-card.blockchain::before { background: #ff6b35; }
   .agency-card.hypelab::before { background: #a78bfa; }
-  .agency-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; margin-bottom: 4px; }
+  .agency-name { font-family: Arial, sans-serif; font-weight: 800; font-size: 19px; margin-bottom: 4px; }
   .agency-type { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
   .agency-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
   .agency-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -129,7 +128,7 @@
   .overlap-card.medium { border-color: var(--color-caution); }
   .overlap-card.low-medium { border-color: var(--color-info); }
   .overlap-card.low { border-color: var(--color-proceed); }
-  .overlap-pair { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .overlap-pair { font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
   .overlap-risk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
   .overlap-risk.high { color: var(--color-avoid); }
   .overlap-risk.medium { color: var(--color-caution); }
@@ -156,7 +155,7 @@
   .mobile-table { display: none; }
   @media (max-width: 768px) { .table-outer { display: none; } .mobile-table { display: block; } }
   .mobile-agency-card { background: var(--surface); border: 1px solid var(--border2); margin-bottom: 10px; overflow: hidden; }
-  .mobile-agency-header { padding: 14px 18px; background: #1a1a2e; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; border-bottom: 1px solid var(--border2); }
+  .mobile-agency-header { padding: 14px 18px; background: #1a1a2e; font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; border-bottom: 1px solid var(--border2); }
   .mobile-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 9px 18px; border-bottom: 1px solid var(--border); gap: 16px; }
   .mobile-row:last-child { border-bottom: none; }
   .mobile-row-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); flex-shrink: 0; width: 110px; padding-top: 2px; }
@@ -168,22 +167,22 @@
 
   .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
   .product-card { background: var(--surface); padding: 28px; }
-  .product-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 4px; }
+  .product-name { font-family: Arial, sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 4px; }
   .product-type { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 22px; }
   .ranking-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .ranking-item:last-child { border-bottom: none; }
-  .rank-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; line-height: 1; min-width: 30px; color: #ffffff12; }
+  .rank-num { font-family: Arial, sans-serif; font-weight: 800; font-size: 26px; line-height: 1; min-width: 30px; color: #ffffff12; }
   .rank-num.gold { color: var(--gold); }
   .rank-num.blue { color: var(--accent); }
-  .rank-agency { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+  .rank-agency { font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 3px; }
   .rank-reason { font-size: 12px; color: var(--muted); line-height: 1.6; }
   @media (max-width: 700px) { .product-grid { grid-template-columns: 1fr; } }
 
-  .budget-total-display { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 52px); letter-spacing: -0.03em; margin-bottom: 4px; }
+  .budget-total-display { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 52px); letter-spacing: -0.03em; margin-bottom: 4px; }
   .budget-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
   .budget-slider-group { display: flex; flex-direction: column; gap: 26px; margin-bottom: 36px; }
   .budget-slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-  .budget-slider-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; }
+  .budget-slider-name { font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; }
   .budget-slider-amount { font-family: var(--mono); font-size: 14px; color: var(--text); }
   .budget-slider-pct { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: 6px; }
   input[type="range"] { width: 100%; height: 4px; border-radius: 0; appearance: none; outline: none; cursor: pointer; }
@@ -205,7 +204,7 @@
   .callout.proceed { border-color: var(--color-proceed); background: #22c97a08; }
   .callout.info { border-color: var(--color-info); background: #5b6aff08; }
   .callout.pending { border-color: var(--color-pending); background: #f5c84208; }
-  .callout-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .callout-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
   .callout.avoid .callout-title { color: var(--color-avoid); }
   .callout.caution .callout-title { color: var(--color-caution); }
   .callout.proceed .callout-title { color: var(--color-proceed); }
@@ -218,7 +217,7 @@
   .qa-card.answered { border-color: var(--color-proceed); }
   .qa-card.caution { border-color: var(--color-caution); }
   .qa-card.no-response { border-color: var(--color-avoid); }
-  .qa-agency { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px; margin-bottom: 4px; }
+  .qa-agency { font-family: Arial, sans-serif; font-weight: 800; font-size: 17px; margin-bottom: 4px; }
   .qa-status { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border2); }
   .qa-card.answered .qa-status { color: var(--color-proceed); }
   .qa-card.caution .qa-status { color: var(--color-caution); }
@@ -505,7 +504,7 @@
   <p style="font-size:14px;color:var(--muted);margin-bottom:32px">Drag sliders to split the budget. All five always add up to 100%.</p>
   <div class="private-content">
     <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px">
-      <div class="budget-total-display" style="margin-bottom:0">$<input id="totalBudgetInput" type="number" value="100000" min="0" step="1000" style="background:transparent;border:none;border-bottom:2px solid var(--accent);color:inherit;font-family:'Syne',sans-serif;font-weight:800;font-size:inherit;letter-spacing:inherit;width:7ch;outline:none;padding:0 4px 2px;" oninput="this.style.width=Math.max(3,this.value.length)+'ch';updateBudget()"></div>
+      <div class="budget-total-display" style="margin-bottom:0">$<input id="totalBudgetInput" type="number" value="100000" min="0" step="1000" style="background:transparent;border:none;border-bottom:2px solid var(--accent);color:inherit;font-family:Arial,sans-serif;font-weight:800;font-size:inherit;letter-spacing:inherit;width:7ch;outline:none;padding:0 4px 2px;" oninput="this.style.width=Math.max(3,this.value.length)+'ch';updateBudget()"></div>
     </div>
   </div>
   <div class="guest-content"><div class="budget-total-display">Confidential</div></div>
@@ -743,7 +742,7 @@
         <span style="font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.1em">CONFIRMED</span>
       </div>
       <div class="agency-type">Creative support + crypto-native display + KOL</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--gold);margin:12px 0 4px">
+      <div style="font-family:Arial,sans-serif;font-weight:800;font-size:26px;color:var(--gold);margin:12px 0 4px">
         <span class="private-content">$11k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
         <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
       </div>
@@ -757,7 +756,7 @@
         <span style="font-family:var(--mono);font-size:10px;color:#a78bfa;letter-spacing:0.1em">RECOMMENDED #1</span>
       </div>
       <div class="agency-type">60% crypto web traffic · CPM $2 · AI-optimized</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:#a78bfa;margin:12px 0 4px">
+      <div style="font-family:Arial,sans-serif;font-weight:800;font-size:26px;color:#a78bfa;margin:12px 0 4px">
         <span class="private-content">$14k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
         <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
       </div>
@@ -771,7 +770,7 @@
         <span style="font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.1em">RECOMMENDED #2</span>
       </div>
       <div class="agency-type">Push + Telegram · COL $0.81 · VNM $2.95 eCPA</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--accent);margin:12px 0 4px">
+      <div style="font-family:Arial,sans-serif;font-weight:800;font-size:26px;color:var(--accent);margin:12px 0 4px">
         <span class="private-content">$8k<span style="font-size:14px;font-weight:400;color:var(--muted)">/month</span></span>
         <span class="guest-content" style="font-size:14px;color:var(--muted)">Confidential</span>
       </div>
@@ -830,7 +829,7 @@
 
   <!-- Launch sequence -->
   <div class="section-eyebrow" style="margin-top:40px">Launch sequence</div>
-  <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em;margin-bottom:20px">How to roll this out</h3>
+  <h3 style="font-family:Arial,sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.02em;margin-bottom:20px">How to roll this out</h3>
   <div class="specs-grid reveal">
     <div class="spec-cell">
       <div class="spec-label">Week 1</div>

@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clipping & KOL Campaigns — GoLuna & Hotshot</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg: #0a0a0f;
@@ -28,24 +27,24 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.7; font-size: 15px; }
+  body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.7; font-size: 15px; }
 
   /* ── LOGIN ── */
   #loginOverlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; }
   .login-box { background: var(--surface); border: 1px solid var(--border2); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
-  .login-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
-  .login-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
+  .login-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+  .login-title { font-family: Arial, sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
   .login-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
   .login-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 12px 16px; font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
   .login-input:focus { border-color: var(--accent); }
   .login-input.error { border-color: var(--color-avoid); }
-  .login-btn { width: 100%; background: var(--accent); color: white; border: none; padding: 13px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
+  .login-btn { width: 100%; background: var(--accent); color: white; border: none; padding: 13px; font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
   .login-btn:hover { opacity: 0.85; }
   .login-error { font-size: 12px; color: var(--color-avoid); font-family: var(--mono); margin-bottom: 12px; display: none; }
 
   /* ── NAV ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .nav-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
   .nav-links { display: flex; gap: 2px; list-style: none; }
   .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 4px; transition: all 0.2s; font-family: var(--mono); }
   .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--border2); }
@@ -55,19 +54,19 @@
   .page-wrap { margin-top: 53px; }
   section { padding: 60px 40px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
   .section-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 36px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
+  .section-title { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 36px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
   .section-sub { font-size: 15px; color: var(--muted); margin-bottom: 36px; max-width: 640px; }
   @media (max-width: 600px) { section { padding: 36px 16px; } }
 
   /* ── HERO ── */
   .hero { padding: 56px 40px 48px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
   .hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 68px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .hero h1 { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 68px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
   .hero-purpose { font-size: 16px; color: var(--muted); margin-bottom: 36px; max-width: 600px; }
   .hero-purpose strong { color: var(--text); font-weight: 500; }
   .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; background: var(--border); max-width: 800px; }
   .hero-stat { background: var(--surface); padding: 20px 24px; }
-  .hero-stat .num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; margin-bottom: 4px; }
+  .hero-stat .num { font-family: Arial, sans-serif; font-weight: 800; font-size: 28px; line-height: 1; margin-bottom: 4px; }
   .hero-stat .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   @media (max-width: 600px) { .hero { padding: 36px 16px 28px; } .hero-stats { grid-template-columns: 1fr 1fr; } }
 
@@ -76,7 +75,7 @@
   .vendor-card { background: var(--surface); padding: 28px; border-top: 4px solid transparent; }
   .vendor-card.inclips { border-color: var(--inclips); }
   .vendor-card.maads { border-color: var(--maads); }
-  .vendor-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; margin-bottom: 4px; }
+  .vendor-name { font-family: Arial, sans-serif; font-weight: 800; font-size: 20px; margin-bottom: 4px; }
   .vendor-type { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
   .vendor-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
   .tag { display: inline-block; padding: 3px 8px; background: var(--border); border: 1px solid var(--border2); font-family: var(--mono); font-size: 10px; color: var(--muted); margin: 3px 3px 0 0; }
@@ -88,7 +87,7 @@
   .callout.caution { border-color: var(--color-caution); background: #ff8c4208; }
   .callout.info { border-color: var(--accent); background: #5b6aff08; }
   .callout.pending { border-color: var(--color-pending); background: #f5c84208; }
-  .callout-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .callout-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
   .callout.proceed .callout-title { color: var(--color-proceed); }
   .callout.caution .callout-title { color: var(--color-caution); }
   .callout.info .callout-title { color: var(--accent); }
@@ -99,7 +98,7 @@
   .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; background: var(--border); }
   .pkg-card { background: var(--surface); padding: 26px; position: relative; }
   .pkg-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .pkg-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+  .pkg-price { font-family: Arial, sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
   .pkg-views { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 18px; }
   .pkg-item { font-size: 12px; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); line-height: 1.5; display: flex; gap: 8px; }
   .pkg-item:last-child { border-bottom: none; }
@@ -123,7 +122,7 @@
   .kol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
   .kol-card { background: var(--surface); padding: 26px; }
   .kol-tier { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .kol-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; color: var(--maads); margin-bottom: 4px; }
+  .kol-price { font-family: Arial, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; color: var(--maads); margin-bottom: 4px; }
   .kol-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 18px; font-family: var(--mono); }
   .kol-item { font-size: 13px; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
   .kol-item:last-child { border-bottom: none; }
@@ -134,7 +133,7 @@
   .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .fee-row:last-child { border-bottom: none; }
   .fee-label { color: var(--muted); }
-  .fee-value { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); }
+  .fee-value { font-family: Arial, sans-serif; font-weight: 700; color: var(--text); }
   .fee-total { font-size: 16px; }
   .fee-total .fee-label { color: var(--text); font-weight: 500; }
   .fee-total .fee-value { color: var(--maads); font-size: 20px; }
@@ -152,7 +151,7 @@
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .timeline-item { display: flex; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--border); }
   .timeline-item:last-child { border-bottom: none; }
-  .timeline-week { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; color: var(--accent); min-width: 60px; padding-top: 2px; }
+  .timeline-week { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; color: var(--accent); min-width: 60px; padding-top: 2px; }
   .timeline-content { font-size: 13px; color: var(--muted); line-height: 1.7; }
   .timeline-content strong { color: var(--text); }
 
@@ -265,7 +264,7 @@
   <h2 class="section-title">Logo & Clipping Campaign</h2>
   <p class="section-sub">Evergreen content campaign across IG/X/TT. Content includes memes, sports, news, streamer clips, and AI videos with GoLuna branding. InClips handles all production and distribution.</p>
 
-  <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;font-size:11px;font-family:var(--mono)">LOGO CAMPAIGN — VIEW PACKAGES</h3>
+  <h3 style="font-family:Arial,sans-serif;font-weight:700;font-size:16px;margin-bottom:16px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;font-size:11px;font-family:var(--mono)">LOGO CAMPAIGN — VIEW PACKAGES</h3>
   <div class="pkg-grid reveal" style="margin-bottom:32px">
     <div class="pkg-card">
       <div class="pkg-label">Pilot</div>
