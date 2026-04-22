@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/social-proof", "destination": "/social-proof.html" },
-    { "source": "/clipping", "destination": "/clipping.html" }
+    { "source": "/social-proof", "destination": "/social-proof.html" }
   ]
 }
