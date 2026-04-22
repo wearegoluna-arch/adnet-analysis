@@ -324,12 +324,12 @@
 </div>
 
 <script>
-const PASS = 'Golunahotshotprivate11!';
+const PASSES = ['Golunahotshotprivate11!', 'Golunahotshot2026'];
 function tryLogin() {
   const val = document.getElementById('passwordInput').value;
   const inp = document.getElementById('passwordInput');
   const err = document.getElementById('loginError');
-  if (val === PASS) {
+  if (PASSES.includes(val)) {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
     document.getElementById('legend').style.display = 'flex';
