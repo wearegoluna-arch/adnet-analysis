@@ -857,13 +857,13 @@
 </footer>
 
 <script>
-const PASS = 'Golunahotshotprivate11!';
+const PASSES = ['Golunahotshotprivate11!', 'Golunahotshot2026'];
 
 function tryLogin() {
   const val = document.getElementById('passwordInput').value;
   const err = document.getElementById('loginError');
   const inp = document.getElementById('passwordInput');
-  if (val === PASS) {
+  if (PASSES.includes(val)) {
     enterPrivate();
   } else {
     err.style.display = 'block';
