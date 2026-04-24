@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Hat Meta — GoLuna Internal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f; --surface: #111118; --surface2: #18181f;
+    --border: #ffffff0f; --border2: #ffffff18; --text: #e8e8f0;
+    --muted: #7070a0; --accent: #5b6aff; --gold: #f5c842; --mono: 'Courier New', monospace;
+    --color-avoid: #ff4757; --color-caution: #ff8c42; --color-proceed: #22c97a;
+    --bh: #ff4757;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.7; font-size: 15px; }
+
+  #loginOverlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  .login-box { background: var(--surface); border: 1px solid #ff475730; padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+  .login-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bh); margin-bottom: 12px; }
+  .login-warning { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 28px; padding: 10px; border: 1px solid #ff475720; background: #ff475708; line-height: 1.6; }
+  .login-title { font-family: Arial, sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 8px; }
+  .login-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+  .login-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); color: var(--text); padding: 12px 16px; font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
+  .login-input:focus { border-color: var(--bh); }
+  .login-input.error { border-color: var(--color-avoid); }
+  .login-btn { width: 100%; background: var(--bh); color: white; border: none; padding: 13px; font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
+  .login-btn:hover { opacity: 0.85; }
+  .login-error { font-size: 12px; color: var(--color-avoid); font-family: var(--mono); margin-bottom: 12px; display: none; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid #ff475720; }
+  .nav-logo { font-family: Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bh); }
+  .nav-links { display: flex; gap: 2px; list-style: none; }
+  .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 4px; transition: all 0.2s; font-family: var(--mono); }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--border2); }
+  @media (max-width: 900px) { nav { padding: 16px 20px; } .nav-links { display: none; } }
+
+  .confidential-bar { margin-top: 53px; background: #ff475712; border-bottom: 1px solid #ff475730; padding: 10px max(40px, calc((100% - 1200px) / 2 + 40px)); display: flex; align-items: center; gap: 12px; }
+  .conf-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bh); animation: pulse 2s infinite; flex-shrink: 0; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .conf-text { font-family: var(--mono); font-size: 11px; color: var(--bh); letter-spacing: 0.1em; }
+  @media (max-width: 600px) { .confidential-bar { padding: 10px 16px; } }
+
+  .hero { padding: 56px 40px 48px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bh); margin-bottom: 16px; }
+  .hero h1 { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(34px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .hero-purpose { font-size: 15px; color: var(--muted); margin-bottom: 36px; max-width: 600px; }
+  .hero-purpose strong { color: var(--text); font-weight: 500; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; background: var(--border); max-width: 800px; }
+  .meta-stat { background: var(--surface); padding: 20px 24px; }
+  .meta-stat .num { font-family: Arial, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+  .meta-stat .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 600px) { .hero { padding: 36px 16px 28px; } .meta-grid { grid-template-columns: 1fr 1fr; } }
+
+  section { padding: 60px 40px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bh); margin-bottom: 8px; }
+  .section-title { font-family: Arial, sans-serif; font-weight: 800; font-size: clamp(22px, 3.5vw, 34px); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 28px; }
+  @media (max-width: 600px) { section { padding: 36px 16px; } }
+
+  .callout { padding: 18px 22px; margin: 20px 0; border-left: 3px solid; }
+  .callout.avoid { border-color: var(--color-avoid); background: #ff475708; }
+  .callout.caution { border-color: var(--color-caution); background: #ff8c4208; }
+  .callout.proceed { border-color: var(--color-proceed); background: #22c97a08; }
+  .callout.info { border-color: var(--accent); background: #5b6aff08; }
+  .callout.bh { border-color: var(--bh); background: #ff475708; }
+  .callout-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .callout.avoid .callout-title { color: var(--color-avoid); }
+  .callout.caution .callout-title { color: var(--color-caution); }
+  .callout.proceed .callout-title { color: var(--color-proceed); }
+  .callout.info .callout-title { color: var(--accent); }
+  .callout.bh .callout-title { color: var(--bh); }
+  .callout-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-bottom: 24px; }
+  .col-card { background: var(--surface); padding: 26px; }
+  .col-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border2); }
+  .col-item { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .col-item:last-child { border-bottom: none; }
+  .col-item .dot { flex-shrink: 0; margin-top: 2px; }
+  .dot-g { color: var(--color-proceed); }
+  .dot-r { color: var(--color-avoid); }
+  .dot-y { color: var(--color-caution); }
+  @media (max-width: 650px) { .two-col { grid-template-columns: 1fr; } }
+
+  .table-outer { overflow-x: auto; border: 1px solid var(--border2); margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 500px; }
+  thead tr { background: #1a1a2e; border-bottom: 1px solid var(--border2); }
+  th { padding: 12px 16px; text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  td { padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--muted); }
+  td:first-child { color: var(--text); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #0d0d14; }
+
+  .action-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .action-item:last-child { border-bottom: none; }
+  .action-owner { font-family: var(--mono); font-size: 11px; color: var(--bh); min-width: 80px; padding-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .action-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .action-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+  .phase-card { background: var(--surface); padding: 22px; }
+  .phase-num { font-family: Arial, sans-serif; font-weight: 800; font-size: 32px; color: #ffffff08; line-height: 1; margin-bottom: 8px; }
+  .phase-title { font-family: Arial, sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 10px; color: var(--text); }
+  .phase-item { font-size: 12px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--border); }
+  .phase-item:last-child { border-bottom: none; }
+  @media (max-width: 650px) { .phase-grid { grid-template-columns: 1fr; } }
+
+  .risk-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+  .risk-high { background: #ff475715; color: var(--color-avoid); border: 1px solid #ff475730; }
+  .risk-med { background: #ff8c4215; color: var(--color-caution); border: 1px solid #ff8c4230; }
+  .risk-low { background: #22c97a15; color: var(--color-proceed); border: 1px solid #22c97a30; }
+
+  footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--border); }
+  .footer-note { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+  @media (max-width: 600px) { footer { padding: 20px 16px; flex-direction: column; gap: 8px; } }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">⚠ GoLuna Internal</div>
+    <div class="login-warning">CONFIDENTIAL — This page contains sensitive information about non-standard advertising methods. Internal use only.</div>
+    <div class="login-title">Restricted Access</div>
+    <div class="login-subtitle">Enter your access code to view this document.</div>
+    <input type="password" class="login-input" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()">
+    <div class="login-error" id="loginError">Incorrect password. Try again.</div>
+    <button class="login-btn" onclick="tryLogin()">Enter</button>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">⚠ Black Hat Meta — Internal</div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#budget">Budget</a></li>
+    <li><a href="#tech">Tech Stack</a></li>
+    <li><a href="#launch">Launch Scope</a></li>
+    <li><a href="#actions">Actions</a></li>
+    <li><a href="/index.html" style="color:var(--accent)">← Main Report</a></li>
+  </ul>
+</nav>
+
+<div class="confidential-bar">
+  <div class="conf-dot"></div>
+  <div class="conf-text">CONFIDENTIAL — GOLUNA INTERNAL — BLACK HAT META PARTNERSHIP — 24 APRIL 2026</div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Discovery Call Summary · 24 April 2026 · ~28 min · Swedish</div>
+  <h1>Black Hat<br><span style="color:var(--bh)">Meta</span><br>Partnership</h1>
+  <p class="hero-purpose">Discovery call with Johan and David (Black Hat agency) to scope a Meta advertising partnership for GoLuna's launch. Focus: cloaking infrastructure, ad account sourcing, LATAM test markets, and an integrated long-term partnership model. WhatsApp track was parked — Meta Black Hat only for now.</p>
+  <div class="meta-grid reveal">
+    <div class="meta-stat"><div class="num" style="color:var(--bh)">$10–20k</div><div class="label">Initial test budget/mo</div></div>
+    <div class="meta-stat"><div class="num" style="color:var(--gold)">4</div><div class="label">Test markets</div></div>
+    <div class="meta-stat"><div class="num" style="color:var(--color-proceed)">~2 wks</div><div class="label">Signal per geo</div></div>
+    <div class="meta-stat"><div class="num" style="color:var(--bh)">$50–100k</div><div class="label">Scale-up target/mo</div></div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-eyebrow">Call context and fit</div>
+  <h2 class="section-title">Positioning & Fit</h2>
+
+  <div class="callout bh"><div class="callout-title">Partnership model — integrated arm, not vendor</div><div class="callout-text">Johan and David propose a long-term cooperation where GoLuna learns internal Black Hat capability while the agency supplies tech and relationships that take years to build independently. Chris wants hands-on involvement to understand the system before delegating. Agency's weakest area is creative — Chris's strongest. Natural complementarity.</div></div>
+
+  <div class="two-col reveal">
+    <div class="col-card">
+      <div class="col-title" style="color:var(--bh)">Agency (Johan + David) — Strengths</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Tech and campaign management infrastructure</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Ad account sourcing via specialist contact ("krängare")</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Safe browsers and IP-locked logins per account</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Cloaking infrastructure — "spegling/rosa elefant" (mirror/pink-elephant) pattern</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>1.3M Brazilian mobile numbers + other geos for SMS/caller campaigns</div>
+      <div class="col-item"><span class="dot dot-r">✗</span>Creative and content — own admission, weakest area. Traditional casino-slot assets only.</div>
+    </div>
+    <div class="col-card">
+      <div class="col-title" style="color:var(--accent)">GoLuna (Chris) — Strengths</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Meta-native experience — "I can do Meta pretty well, many years of it"</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Strong on content and creative production</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>GoLuna owns the platform — pixel works end-to-end (huge advantage vs affiliates who block deep tracking)</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Hyros / Triple Whale tracking stack already in use</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>100M clipping views planned in first 3 months — retargeting audience being built simultaneously</div>
+      <div class="col-item"><span class="dot dot-r">✗</span>No Black Hat experience yet — wants to learn before delegating</div>
+    </div>
+  </div>
+
+  <div class="callout caution reveal"><div class="callout-title">Risk context</div><div class="callout-text">Black Hat Meta advertising violates Meta's Terms of Service. Ad accounts will be banned — this is built into the model, not a failure state. The agency and David have been burned on compliance recently — this is an active, near-term concern they flagged explicitly. Account lifespan is finite by design. The economics only work if the revenue-per-account-lifespan exceeds the cost of sourcing and running the account.</div></div>
+</section>
+
+<!-- STRUCTURE -->
+<section id="structure">
+  <div class="section-eyebrow">Commercial model</div>
+  <h2 class="section-title">Commercial Structure</h2>
+
+  <div class="table-outer reveal">
+    <table>
+      <thead><tr><th>Element</th><th>Detail</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Pricing model</td><td>% of spend + small fixed monthly fee + tool costs</td><td style="color:var(--color-pending)">Johan to draft pricelist</td></tr>
+        <tr><td>Account management</td><td>Either GoLuna gets access and manages (via safe browsers, IP-locked logins) or agency runs full service. Open to either.</td><td style="color:var(--color-pending)">To be decided</td></tr>
+        <tr><td>Windfall / revenue share</td><td>Johan to align with Staffan + team and circle back with a proposal</td><td style="color:var(--color-pending)">Pending</td></tr>
+        <tr><td>Contract</td><td>Company-to-company agreement required before account setup begins</td><td style="color:var(--color-avoid)">Not signed — blocker</td></tr>
+        <tr><td>Ad account source</td><td>Specialist "krängare" contact. Accounts require $10k+/month spend to keep. Parallel lower-spend account available for testing.</td><td style="color:var(--color-caution)">~2 weeks setup time</td></tr>
+        <tr><td>Local Meta accounts</td><td>Possible but less stable — new accounts are flagged faster</td><td style="color:var(--color-caution)">Secondary option</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout info reveal"><div class="callout-title">Account model note</div><div class="callout-text">Sourced accounts require $10k+/month to maintain viability. The agency can run a parallel lower-spend test account alongside. Setup time is ~2 weeks before launch — this needs to start now given the 4–6 week go-live window.</div></div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget">
+  <div class="section-eyebrow">Test plan and scale-up</div>
+  <h2 class="section-title">Budget & Test Plan</h2>
+
+  <div class="table-outer reveal">
+    <table>
+      <thead><tr><th>Item</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Initial test budget</td><td>$10,000–$20,000 / month</td></tr>
+        <tr><td>Test split</td><td>~$5,000 per country × 4 countries</td></tr>
+        <tr><td>Test markets</td><td>Argentina, Chile, Brazil — LATAM, crypto-friendly, agency has prior traction</td></tr>
+        <tr><td>Test window</td><td>~2 weeks per geo — Black Hat shows signal in days, not months</td></tr>
+        <tr><td>Scale-up trigger</td><td>When something works: push hard same month. Next-month budget $50k–$100k.</td></tr>
+        <tr><td>Total GoLuna pool</td><td>1.5–2M SEK across 3–6 months, split across all channels</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout bh reveal"><div class="callout-title">Critical mindset — don't stay frozen</div><div class="callout-text">Black Hat punishes slow movers because accounts die and learnings reset. If a method works, reallocate aggressively same month. The test budget is a signal-finding exercise, not a steady state. Speed of reallocation is part of the strategy.</div></div>
+
+  <div class="callout info reveal"><div class="callout-title">LATAM overlap with other channels</div><div class="callout-text">The LATAM test markets (Argentina, Chile, Brazil) overlap with the RichAds data we already have — COL Push at $0.81 eCPA and BRA Direct Click at $2.62 registration eCPA. Black Hat Meta will run parallel to, not instead of, those channels. Deduplication and attribution clarity between channels is critical from day one.</div></div>
+</section>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="section-eyebrow">Infrastructure and tracking</div>
+  <h2 class="section-title">Tech Stack</h2>
+
+  <div class="two-col reveal">
+    <div class="col-card">
+      <div class="col-title">Cloaking Infrastructure</div>
+      <div class="col-item"><span class="dot dot-y">·</span><span><strong style="color:var(--text)">"Spegling / rosa elefant"</strong> — mirror / pink-elephant overlay pattern. Real customers see the normal GoLuna page. Meta reviewers see a compliant placeholder page.</span></div>
+      <div class="col-item"><span class="dot dot-y">·</span>Safe browsers with IP-locked logins — one per ad account to prevent account linking and bans cascading</div>
+      <div class="col-item"><span class="dot dot-y">·</span>Ad accounts sourced via specialist contact ("krängare") — not standard Meta business accounts</div>
+      <div class="col-item"><span class="dot dot-y">·</span>$10k+/month spend required to keep sourced accounts viable</div>
+    </div>
+    <div class="col-card">
+      <div class="col-title">Tracking Stack</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>GoLuna owns the platform — pixel works end-to-end. Major advantage vs affiliates who block deep tracking.</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Chris's default stack: Hyros / Triple Whale</div>
+      <div class="col-item"><span class="dot dot-y">·</span>Open question: how deep should tracking go? FTD only, or full LTV (Day 30 / Day 90 post-click)?</div>
+      <div class="col-item"><span class="dot dot-g">✓</span>Retargeting flagged as "almost the most important loop" — must be supported on day one</div>
+    </div>
+  </div>
+
+  <div class="col-card reveal" style="margin-bottom:20px">
+    <div class="col-title">AI Voice Callers — Separate Track</div>
+    <div class="col-item"><span class="dot dot-g">✓</span>Chris has a working demo ready: agent, voice, and "brain" all complete. Demo scheduled next week.</div>
+    <div class="col-item"><span class="dot dot-y">·</span><strong style="color:var(--text)">Blocker:</strong> needs a "fallbolag" (shell company) for SIM / service registrations requiring an org number. Described as the "last piece standing."</div>
+    <div class="col-item"><span class="dot dot-y">·</span>Asking agency if they can supply a fallbolag. Response pending.</div>
+    <div class="col-item"><span class="dot dot-g">✓</span>Agency has 1.3M Brazilian mobile numbers + other geos for SMS / caller campaigns — complementary asset</div>
+  </div>
+
+  <div class="col-card reveal">
+    <div class="col-title">Retargeting Assets</div>
+    <div class="col-item"><span class="dot dot-g">✓</span>GoLuna: 100M clipping views planned in first 3 months (~250K SEK budget, in-house clipper) — builds retargeting audience simultaneously</div>
+    <div class="col-item"><span class="dot dot-g">✓</span>Agency: 1.3M Brazilian mobile numbers (and other geos) for caller / SMS outreach</div>
+    <div class="col-item"><span class="dot dot-g">✓</span>GoLuna wallet / exchange marketing running separately — additional audience signal</div>
+    <div class="col-item"><span class="dot dot-y">·</span>Retargeting loop must be set up and tracking-enabled from day one — flagged as "almost the most important" by agency</div>
+  </div>
+</section>
+
+<!-- LAUNCH -->
+<section id="launch">
+  <div class="section-eyebrow">GoLuna product roadmap</div>
+  <h2 class="section-title">Launch Scope</h2>
+
+  <div class="callout info reveal"><div class="callout-title">Go-live: 4–6 weeks from 24 April 2026</div><div class="callout-text">Multi-language, crypto-first. Account setup needs to start ~2 weeks before site launch — initiate now given the timeline.</div></div>
+
+  <div class="phase-grid reveal">
+    <div class="phase-card">
+      <div class="phase-num">01</div>
+      <div class="phase-title">Phase 1 — Launch</div>
+      <div class="phase-item">Casino</div>
+      <div class="phase-item">Sportsbook</div>
+      <div class="phase-item">Prediction markets</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <div class="phase-title">Phase 2 — Games</div>
+      <div class="phase-item">PvP / arcade</div>
+      <div class="phase-item">Multiplayer games</div>
+      <div class="phase-item">Hotshot integration</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <div class="phase-title">Phase 3 — Fiat</div>
+      <div class="phase-item">Sweepstakes model</div>
+      <div class="phase-item">Apple Pay support</div>
+      <div class="phase-item">Non-crypto users</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section id="actions">
+  <div class="section-eyebrow">Post-call commitments</div>
+  <h2 class="section-title">Action Items</h2>
+
+  <div style="background:var(--surface);border:1px solid var(--border2);padding:24px" class="reveal">
+    <div class="action-item">
+      <div class="action-owner">Johan</div>
+      <div><div class="action-text">Align with Staffan + team. Draft commercial proposal — percentage of spend + windfall / revenue share model.</div><div class="action-sub" style="color:var(--color-avoid)">Blocking — no account setup until contract and pricing are agreed</div></div>
+    </div>
+    <div class="action-item">
+      <div class="action-owner">Chris</div>
+      <div><div class="action-text">Finalise test-geo budget split across Argentina, Chile, and Brazil and share with agency.</div></div>
+    </div>
+    <div class="action-item">
+      <div class="action-owner">Both</div>
+      <div><div class="action-text">Sign company-to-company contract before account setup begins.</div><div class="action-sub" style="color:var(--color-avoid)">Hard blocker — nothing moves without this</div></div>
+    </div>
+    <div class="action-item">
+      <div class="action-owner">Chris</div>
+      <div><div class="action-text">Share AI voice caller demo next week.</div></div>
+    </div>
+    <div class="action-item">
+      <div class="action-owner">Agency</div>
+      <div><div class="action-text">Confirm whether they can supply a fallbolag (shell company) for AI caller SIM / service registrations.</div><div class="action-sub" style="color:var(--color-caution)">Blocker for AI caller track specifically</div></div>
+    </div>
+    <div class="action-item">
+      <div class="action-owner">Both</div>
+      <div><div class="action-text">Kick off ad account prep ~2 weeks before site go-live. Given 4–6 week launch window, this needs to start immediately after contract is signed.</div><div class="action-sub" style="color:var(--color-caution)">Time-sensitive — setup takes ~2 weeks</div></div>
+    </div>
+  </div>
+
+  <div class="callout caution" style="margin-top:24px"><div class="callout-title">Open questions still unresolved</div><div class="callout-text">1. Tracking depth — FTD only or full LTV (Day 30 / Day 90)? Decision needed before pixel setup.<br>2. Account management model — GoLuna self-manages or agency full service?<br>3. Windfall / revenue share structure — pending Johan aligning with Staffan.<br>4. Fallbolag supply — can agency provide one for AI caller track?</div></div>
+</section>
+
+<footer>
+  <div class="footer-note">CONFIDENTIAL — GoLuna Internal — Black Hat Meta — 24 April 2026</div>
+  <div class="footer-note">Do not distribute outside GoLuna team</div>
+</footer>
+
+<script>
+const PASSES = ['Golunahotshotprivate11!', 'Golunahotshot2026'];
+
+function tryLogin() {
+  const val = document.getElementById('passwordInput').value;
+  const err = document.getElementById('loginError');
+  const inp = document.getElementById('passwordInput');
+  if (PASSES.includes(val)) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    sessionStorage.setItem('bh_auth', '1');
+  } else {
+    err.style.display = 'block';
+    inp.classList.add('error');
+    setTimeout(() => { err.style.display = 'none'; inp.classList.remove('error'); }, 3000);
+  }
+}
+
+if (sessionStorage.getItem('bh_auth') === '1') {
+  document.getElementById('loginOverlay').style.display = 'none';
+}
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { threshold: 0.25 });
+document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
